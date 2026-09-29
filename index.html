@@ -3,34 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#c7448d">
-  <meta name="description" content="Créez votre photo de soutien personnalisée pour afficher votre soutien à Antoine Le Vilain.">
-  <title>Créer ma photo de soutien</title>
-  <link rel="stylesheet" href="./css/style.css?v=14">
+  <meta name="theme-color" content="#c9409d">
+  <meta name="description" content="Créez votre photo de soutien personnalisée.">
+  <title>Créez votre photo de soutien</title>
+  <link rel="stylesheet" href="./css/style.css?v=15">
 </head>
-<body>
+<body class="landing-page">
   <div id="fb-root"></div>
 
   <main>
-    <section class="top-stage">
+    <section class="top-stage" aria-labelledby="heroTitle">
       <div class="hero-copy">
         <p class="eyebrow">Élection législative partielle</p>
         <p class="hero-context">3e circonscription du Cher</p>
 
-        <h1>Créez votre<br>photo de soutien</h1>
+        <h1 id="heroTitle"><span>Créez votre</span><span>photo de soutien</span></h1>
 
         <p class="lead">
-          Affichez fièrement votre soutien à Antoine Le Vilain grâce à un visuel élégant, positif et prêt à être partagé.
+          Affichez fièrement votre soutien à Antoine Le Vilain avec un visuel élégant, positif et prêt à partager.
           Importez votre photo, personnalisez-la en quelques instants et faites rayonner votre engagement sur tous vos réseaux.
         </p>
       </div>
 
       <div class="candidate-visual" aria-hidden="true">
-        <div class="candidate-halo"></div>
-        <picture class="candidate-picture">
-          <source srcset="./assets/antoine-portrait-v11.webp?v=11" type="image/webp">
+        <picture>
+          <source srcset="./assets/antoine-portrait.webp?v=15" type="image/webp">
           <img
-            src="./assets/antoine-portrait-v11.png?v=11"
+            src="./assets/antoine-portrait.png?v=15"
             width="1080"
             height="1920"
             alt=""
@@ -71,12 +70,7 @@
             <span class="button-arrow" aria-hidden="true">›</span>
           </label>
 
-          <input
-            class="visually-hidden"
-            id="fileInput"
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/*"
-          >
+          <input class="visually-hidden" id="fileInput" type="file" accept="image/jpeg,image/png,image/webp,image/*">
         </div>
 
         <div class="notice" id="facebookNotice" hidden></div>
@@ -93,13 +87,13 @@
       </section>
     </section>
 
-    <section class="workflow">
+    <section class="workflow" aria-label="Création du visuel">
       <section class="stage-section" id="editorSection" aria-labelledby="editorTitle" hidden>
         <div class="section-heading section-heading-light">
           <span class="step step-light">2</span>
           <div>
             <h2 id="editorTitle">Ajustez votre photo</h2>
-            <p>Déplacez votre image et utilisez le zoom pour obtenir le cadrage idéal.</p>
+            <p>Déplacez votre image et utilisez le zoom pour obtenir le cadrage souhaité.</p>
           </div>
         </div>
 
@@ -132,24 +126,15 @@
         <img id="resultImage" class="result-image" alt="Visuel généré">
 
         <div class="action-stack">
-          <button class="button button-white" id="shareButton" type="button" hidden>
-            Partager ma photo
-          </button>
-
-          <a class="button button-soft" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">
-            Enregistrer ma photo
-          </a>
-
-          <a class="button button-soft" id="facebookOpenButton"
-             href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-            Ouvrir Facebook
-          </a>
+          <button class="button button-white" id="shareButton" type="button" hidden>Partager ma photo</button>
+          <a class="button button-soft" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">Enregistrer ma photo</a>
+          <a class="button button-soft" id="facebookOpenButton" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Ouvrir Facebook</a>
         </div>
 
         <div class="instructions">
           <strong>Pour l’utiliser comme photo de profil Facebook :</strong>
           <ol>
-            <li>Enregistrez l’image sur votre appareil.</li>
+            <li>Enregistrez l’image.</li>
             <li>Ouvrez votre profil Facebook.</li>
             <li>Choisissez « Modifier la photo de profil ».</li>
             <li>Sélectionnez le visuel généré puis validez.</li>
@@ -161,47 +146,27 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-social">
-        <p class="footer-kicker">Suivre Antoine</p>
-
-        <div class="social-links" aria-label="Réseaux sociaux">
-          <a class="social-button"
-             href="https://www.facebook.com/antoinelevilain18"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Facebook">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M13.6 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.6z"/>
-            </svg>
-          </a>
-
-          <a class="social-button"
-             href="https://www.instagram.com/antoine_le_vilain/"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Instagram">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.3" cy="6.8" r="1"/>
-            </svg>
-          </a>
-
-          <a class="social-button"
-             href="https://www.tiktok.com/@antoinelevilain"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="TikTok">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M14.2 3v10.3a4.1 4.1 0 1 1-3.5-4.1v3a1.3 1.3 0 1 0 .5 1V3h3z"/>
-              <path d="M14.2 3c.5 2.5 2 4 4.8 4.5v3c-2-.2-3.5-.8-4.8-1.9V3z"/>
-            </svg>
-          </a>
-        </div>
+      <div class="footer-title-row" aria-hidden="true">
+        <span></span><p>SUIVRE ANTOINE</p><span></span>
       </div>
 
-      <div class="footer-rule"></div>
+      <div class="social-links" aria-label="Réseaux sociaux d’Antoine Le Vilain">
+        <a class="social-button" href="https://www.facebook.com/antoinelevilain18" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.6 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.6z"/></svg>
+        </a>
+        <a class="social-button instagram" href="https://www.instagram.com/antoine_le_vilain/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.8" r="1"/></svg>
+        </a>
+        <a class="social-button" href="https://www.tiktok.com/@antoinelevilain" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 3v10.3a4.1 4.1 0 1 1-3.5-4.1v3a1.3 1.3 0 1 0 .5 1V3h3z"/><path d="M14.2 3c.5 2.5 2 4 4.8 4.5v3c-2-.2-3.5-.8-4.8-1.9V3z"/></svg>
+        </a>
+      </div>
 
       <nav class="legal-links" aria-label="Liens légaux">
         <a href="./privacy.html">Confidentialité</a>
+        <span>·</span>
         <a href="./delete-data.html">Suppression des données</a>
+        <span>·</span>
         <a href="./terms.html">Conditions</a>
       </nav>
 
@@ -209,10 +174,10 @@
     </div>
   </footer>
 
-  <script src="./js/config.js?v=11"></script>
-  <script src="./js/editor.js?v=11"></script>
-  <script src="./js/facebook.js?v=11"></script>
-  <script src="./js/share.js?v=11"></script>
-  <script src="./js/app.js?v=11"></script>
+  <script src="./js/config.js?v=15"></script>
+  <script src="./js/editor.js?v=15"></script>
+  <script src="./js/facebook.js?v=15"></script>
+  <script src="./js/share.js?v=15"></script>
+  <script src="./js/app.js?v=15"></script>
 </body>
 </html>
