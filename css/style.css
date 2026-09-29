@@ -1045,3 +1045,39 @@ h1 > span { display: block; white-space: nowrap; }
     padding-bottom: 28px;
   }
 }
+
+/* V18 desktop refinement */
+@media (min-width: 701px) {
+  .top-stage {
+    min-height: clamp(780px, calc(100svh - 72px), 900px);
+  }
+
+  .lead {
+    max-width: 43ch;
+    font-size: clamp(1.08rem, 1.38vw, 1.22rem);
+    line-height: 1.48;
+  }
+
+  .candidate-visual {
+    right: -6px;
+    width: 55%;
+  }
+
+  .candidate-visual img {
+    right: 18px;
+    object-position: bottom center;
+  }
+
+  .source-card {
+    top: clamp(390px, 50vh, 452px);
+    bottom: auto;
+  }
+
+  .site-footer {
+    margin-top: 10px;
+  }
+
+  .footer-inner {
+    padding-top: 18px;
+  }
+}
