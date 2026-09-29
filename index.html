@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#c72f73">
   <meta name="description" content="Créez votre photo de profil personnalisée.">
   <title>Créer ma photo de profil</title>
-  <link rel="stylesheet" href="./css/style.css?v=9">
+  <link rel="stylesheet" href="./css/style.css?v=11">
 </head>
 <body>
   <div id="fb-root"></div>
@@ -17,16 +17,27 @@
         <p class="eyebrow">Élection législative partielle</p>
         <p class="hero-context">3e circonscription du Cher</p>
 
-        <h1>Créez votre<br>photo de profil</h1>
+        <h1>Créez votre<br>photo de soutien</h1>
 
         <p class="lead">
-          Personnalisez votre photo avec le visuel de campagne, puis enregistrez-la sur votre appareil.
+          Vous souhaitez afficher votre soutien à Antoine Le Vilain ? Personnalisez votre photo de profil en quelques secondes, puis enregistrez votre visuel pour l’utiliser sur vos réseaux.
         </p>
       </div>
 
       <div class="candidate-visual" aria-hidden="true">
         <div class="candidate-halo"></div>
-        <img src="./assets/antoine-cutout.png" alt="">
+        <picture class="candidate-picture">
+          <source srcset="./assets/antoine-portrait-v11.webp?v=11" type="image/webp">
+          <img
+            src="./assets/antoine-portrait-v11.png?v=11"
+            width="1080"
+            height="1920"
+            alt=""
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
       </div>
 
       <section class="source-card" id="sourceSection" aria-labelledby="sourceTitle">
@@ -34,14 +45,14 @@
           <span class="step">1</span>
           <div>
             <h2 id="sourceTitle">Choisissez votre photo</h2>
-            <p>Importez votre photo Facebook ou choisissez une image sur votre appareil.</p>
+            <p>Sélectionnez votre photo actuelle pour créer votre visuel personnalisé.</p>
           </div>
         </div>
 
         <div class="action-stack">
           <button class="button button-facebook" id="facebookButton" type="button">
             <span class="button-icon facebook-icon" aria-hidden="true">f</span>
-            <span class="button-label">Importer ma photo Facebook</span>
+            <span class="button-label">Utiliser ma photo Facebook</span>
             <span class="button-arrow" aria-hidden="true">›</span>
           </button>
 
@@ -76,7 +87,7 @@
               <path d="M8 10V7.8A4 4 0 0 1 12 4a4 4 0 0 1 4 3.8V10"></path>
             </svg>
           </span>
-          <p>Votre photo est traitée sur votre appareil. Rien n’est publié automatiquement.</p>
+          <p>Votre photo reste sous votre contrôle : elle est traitée sur votre appareil et rien n’est publié automatiquement.</p>
         </div>
       </section>
     </section>
@@ -103,7 +114,7 @@
         <div class="button-row">
           <button class="button button-soft" id="resetButton" type="button">Recentrer</button>
           <button class="button button-white" id="generateButton" type="button">
-            <span class="button-label">Créer mon visuel</span>
+            <span class="button-label">Créer ma photo de soutien</span>
           </button>
         </div>
       </section>
@@ -112,8 +123,8 @@
         <div class="section-heading section-heading-light">
           <span class="step step-light">3</span>
           <div>
-            <h2 id="resultTitle">Votre visuel est prêt</h2>
-            <p>Enregistrez-le ou utilisez le partage de votre téléphone.</p>
+            <h2 id="resultTitle">Votre photo de soutien est prête</h2>
+            <p>Enregistrez l’image ou utilisez le menu de partage de votre téléphone.</p>
           </div>
         </div>
 
@@ -121,7 +132,7 @@
 
         <div class="action-stack">
           <button class="button button-white" id="shareButton" type="button" hidden>
-            Partager mon visuel
+            Partager ma photo
           </button>
 
           <a class="button button-soft" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">
@@ -150,7 +161,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-social">
-        <p class="footer-kicker">Réseaux sociaux</p>
+        <p class="footer-kicker">Suivre Antoine</p>
 
         <div class="social-links" aria-label="Réseaux sociaux">
           <a class="social-button"
@@ -197,10 +208,10 @@
     </div>
   </footer>
 
-  <script src="./js/config.js?v=9"></script>
-  <script src="./js/editor.js?v=9"></script>
-  <script src="./js/facebook.js?v=9"></script>
-  <script src="./js/share.js?v=9"></script>
-  <script src="./js/app.js?v=9"></script>
+  <script src="./js/config.js?v=11"></script>
+  <script src="./js/editor.js?v=11"></script>
+  <script src="./js/facebook.js?v=11"></script>
+  <script src="./js/share.js?v=11"></script>
+  <script src="./js/app.js?v=11"></script>
 </body>
 </html>
