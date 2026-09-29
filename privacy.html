@@ -3,32 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Confidentialité</title>
+  <meta name="description" content="Politique de confidentialité de l’outil de création de photo de profil.">
+  <title>Politique de confidentialité</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
   <main class="app-shell">
     <section class="card">
-      <h1 style="font-size:2rem">Confidentialité</h1>
+      <h1 style="font-size:2rem">Politique de confidentialité</h1>
+      <p><strong>Dernière mise à jour : 29 septembre 2026.</strong></p>
 
+      <h2>Objet du service</h2>
       <p>
-        Cette version de l’outil traite la photo sélectionnée directement dans le navigateur de l’utilisateur.
-        Le site ne comporte pas de serveur applicatif ni de base de données destinée à stocker les photos.
+        Ce site permet à l’utilisateur de créer un visuel de photo de profil à partir d’une photo choisie
+        sur son appareil ou, lorsqu’il utilise Facebook Login, à partir de sa photo de profil Facebook.
+      </p>
+
+      <h2>Données traitées</h2>
+      <p>
+        Lors d’un import manuel, la photo est traitée directement dans le navigateur. Elle n’est pas
+        téléversée vers une base de données ou un serveur applicatif exploité par ce site.
+      </p>
+      <p>
+        Lors d’une connexion Facebook, l’application demande uniquement l’autorisation
+        <code>public_profile</code> nécessaire au fonctionnement de l’import de la photo de profil.
+        L’identifiant technique et l’URL de la photo renvoyés par Facebook sont utilisés uniquement
+        pour produire le visuel dans le navigateur.
+      </p>
+
+      <h2>Finalité</h2>
+      <p>
+        Les données sont utilisées uniquement pour permettre à l’utilisateur de générer le visuel demandé.
+        Le site ne constitue pas de fichier nominatif des personnes ayant créé un visuel.
+      </p>
+
+      <h2>Conservation</h2>
+      <p>
+        Cette version du site ne dispose pas de base de données utilisateur. Les images et données utilisées
+        pour la génération sont traitées de manière transitoire dans le navigateur et ne sont pas conservées
+        par l’infrastructure du site après utilisation.
+      </p>
+
+      <h2>Facebook / Meta</h2>
+      <p>
+        Facebook Login et le SDK Facebook sont fournis par Meta. Meta peut traiter des données conformément
+        à ses propres conditions et politiques. Ce site n’intègre pas l’App Secret Meta dans le navigateur.
+      </p>
+
+      <h2>Cookies et mesure d’audience</h2>
+      <p>
+        Cette V1 n’intègre pas d’outil de mesure d’audience ni de publicité. Le SDK Facebook peut toutefois
+        utiliser les mécanismes nécessaires à l’authentification lorsque l’utilisateur choisit Facebook Login.
+      </p>
+
+      <h2>Suppression des données</h2>
+      <p>
+        Les instructions de suppression et de révocation de l’accès Facebook sont disponibles sur la page
+        <a href="./delete-data.html">Suppression des données utilisateur</a>.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Pour toute question relative à la confidentialité ou à l’utilisation des données :
+        <a href="mailto:levilain.maxime@gmail.com">levilain.maxime@gmail.com</a>.
       </p>
 
       <p>
-        Si l’utilisateur choisit la connexion Facebook, l’authentification est opérée par Meta.
-        L’outil demande uniquement les informations nécessaires au fonctionnement configuré par l’administrateur
-        de l’application Meta. La photo reçue est utilisée dans le navigateur pour créer le visuel.
+        <a href="./terms.html">Conditions d’utilisation</a>
+        ·
+        <a href="./index.html">Retour à l’outil</a>
       </p>
-
-      <p>
-        Avant une mise en production publique, adaptez cette page à votre responsable de traitement,
-        vos coordonnées, vos durées de conservation éventuelles, vos journaux techniques et les autres
-        traitements réellement mis en œuvre.
-      </p>
-
-      <p><a href="./index.html">Retour à l’outil</a></p>
     </section>
   </main>
 </body>
