@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Créez votre visuel de profil directement dans votre navigateur.">
-  <title>Créer mon visuel de profil</title>
+  <meta name="description" content="Créez une photo de profil personnalisée pour afficher votre soutien à Antoine Le Vilain sur vos réseaux sociaux.">
+  <title>Créer ma photo de soutien | Antoine Le Vilain</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -13,10 +13,11 @@
 
   <main class="app-shell">
     <header class="hero">
-      <p class="eyebrow">Créateur de photo de profil</p>
-      <h1>Créez votre visuel</h1>
+      <p class="eyebrow">Élection législative partielle · 3e circonscription du Cher</p>
+      <h1>Créez votre photo de soutien</h1>
       <p class="lead">
-        Importez votre photo, positionnez-la, puis générez l’image finale directement sur votre appareil.
+        Vous souhaitez afficher votre soutien à Antoine Le Vilain sur vos réseaux ?
+        Importez votre photo, ajustez-la et générez votre visuel en quelques secondes.
       </p>
     </header>
 
@@ -24,20 +25,20 @@
       <div class="section-heading">
         <span class="step">1</span>
         <div>
-          <h2 id="sourceTitle">Choisir une photo</h2>
-          <p>Vous pouvez utiliser Facebook ou choisir une image sur votre appareil.</p>
+          <h2 id="sourceTitle">Choisissez votre photo</h2>
+          <p>Importez votre photo de profil Facebook ou sélectionnez une image sur votre appareil.</p>
         </div>
       </div>
 
       <div class="action-stack">
         <button class="button button-facebook" id="facebookButton" type="button">
-          Utiliser ma photo Facebook
+          Importer ma photo Facebook
         </button>
 
         <p class="separator"><span>ou</span></p>
 
         <label class="button button-secondary" for="fileInput">
-          Choisir une photo
+          Choisir une photo sur mon appareil
         </label>
         <input
           class="visually-hidden"
@@ -49,8 +50,8 @@
 
       <div class="notice" id="facebookNotice" hidden></div>
       <p class="privacy-note">
-        Le traitement de l’image se fait dans votre navigateur. Cette V1 ne stocke pas votre photo sur un serveur du site.
-        Facebook Login est utilisé uniquement pour tenter d’importer votre photo de profil actuelle.
+        Votre photo est traitée directement sur votre appareil. Aucune publication n’est automatique :
+        vous gardez le contrôle sur l’enregistrement et le partage du visuel.
       </p>
     </section>
 
@@ -58,8 +59,8 @@
       <div class="section-heading">
         <span class="step">2</span>
         <div>
-          <h2 id="editorTitle">Ajuster la photo</h2>
-          <p>Déplacez l’image au doigt ou à la souris. Utilisez le curseur pour zoomer.</p>
+          <h2 id="editorTitle">Personnalisez votre visuel</h2>
+          <p>Déplacez votre photo et ajustez le zoom pour obtenir le cadrage qui vous convient.</p>
         </div>
       </div>
 
@@ -73,8 +74,8 @@
       </div>
 
       <div class="button-row">
-        <button class="button button-secondary" id="resetButton" type="button">Recentrer</button>
-        <button class="button button-primary" id="generateButton" type="button">Créer l’image</button>
+        <button class="button button-secondary" id="resetButton" type="button">Recentrer ma photo</button>
+        <button class="button button-primary" id="generateButton" type="button">Créer ma photo de soutien</button>
       </div>
     </section>
 
@@ -82,35 +83,35 @@
       <div class="section-heading">
         <span class="step">3</span>
         <div>
-          <h2 id="resultTitle">Votre image est prête</h2>
-          <p>Sur mobile, utilisez le partage système. Sur ordinateur, téléchargez l’image.</p>
+          <h2 id="resultTitle">Votre photo de soutien est prête</h2>
+          <p>Enregistrez-la sur votre appareil ou utilisez le partage de votre téléphone pour la diffuser sur le réseau de votre choix.</p>
         </div>
       </div>
 
-      <img id="resultImage" class="result-image" alt="Visuel final généré">
+      <img id="resultImage" class="result-image" alt="Photo de profil personnalisée générée">
 
       <div class="action-stack">
         <button class="button button-primary" id="shareButton" type="button" hidden>
-          Partager l’image
+          Partager mon visuel
         </button>
 
-        <a class="button button-secondary" id="downloadButton" download="photo-profil.jpg">
-          Télécharger l’image
+        <a class="button button-secondary" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">
+          Enregistrer ma photo
         </a>
 
         <a class="button button-ghost" id="facebookOpenButton"
            href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-          Ouvrir Facebook
+          Ouvrir Facebook pour changer ma photo
         </a>
       </div>
 
       <div class="instructions">
-        <strong>Pour l’utiliser comme photo de profil :</strong>
+        <strong>Mettre le visuel en photo de profil Facebook :</strong>
         <ol>
-          <li>Enregistrez l’image.</li>
+          <li>Enregistrez l’image sur votre appareil.</li>
           <li>Ouvrez votre profil Facebook.</li>
-          <li>Choisissez la modification de la photo de profil.</li>
-          <li>Sélectionnez l’image générée et validez.</li>
+          <li>Choisissez « Modifier la photo de profil ».</li>
+          <li>Sélectionnez le visuel généré, vérifiez l’aperçu puis validez.</li>
         </ol>
       </div>
     </section>
