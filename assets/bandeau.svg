@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <!--
+    Gabarit V1.
+    Remplacez ce fichier par votre habillage final en conservant un canevas 1080x1080.
+    Les zones transparentes laisseront apparaître la photo de l'utilisateur.
+  -->
+  <rect x="0" y="790" width="1080" height="290" fill="#111111"/>
+  <text x="70" y="900"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="54"
+        font-weight="700"
+        fill="#ffffff"
+        letter-spacing="2">VOTRE BANDEAU</text>
+  <text x="70" y="970"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="30"
+        fill="#ffffff">Remplacez assets/bandeau.svg par le visuel final.</text>
+</svg>

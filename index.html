@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Créez votre visuel de profil directement dans votre navigateur.">
+  <title>Créer mon visuel de profil</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <div id="fb-root"></div>
+
+  <main class="app-shell">
+    <header class="hero">
+      <p class="eyebrow">Créateur de photo de profil</p>
+      <h1>Créez votre visuel</h1>
+      <p class="lead">
+        Importez votre photo, positionnez-la, puis générez l’image finale directement sur votre appareil.
+      </p>
+    </header>
+
+    <section class="card" id="sourceSection" aria-labelledby="sourceTitle">
+      <div class="section-heading">
+        <span class="step">1</span>
+        <div>
+          <h2 id="sourceTitle">Choisir une photo</h2>
+          <p>Vous pouvez utiliser Facebook ou choisir une image sur votre appareil.</p>
+        </div>
+      </div>
+
+      <div class="action-stack">
+        <button class="button button-facebook" id="facebookButton" type="button">
+          Utiliser ma photo Facebook
+        </button>
+
+        <p class="separator"><span>ou</span></p>
+
+        <label class="button button-secondary" for="fileInput">
+          Choisir une photo
+        </label>
+        <input
+          class="visually-hidden"
+          id="fileInput"
+          type="file"
+          accept="image/jpeg,image/png,image/webp,image/*"
+        >
+      </div>
+
+      <div class="notice" id="facebookNotice" hidden></div>
+      <p class="privacy-note">
+        Le traitement de l’image se fait dans votre navigateur. Cette V1 ne stocke pas votre photo sur un serveur du site.
+      </p>
+    </section>
+
+    <section class="card" id="editorSection" aria-labelledby="editorTitle" hidden>
+      <div class="section-heading">
+        <span class="step">2</span>
+        <div>
+          <h2 id="editorTitle">Ajuster la photo</h2>
+          <p>Déplacez l’image au doigt ou à la souris. Utilisez le curseur pour zoomer.</p>
+        </div>
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="editorCanvas" width="1080" height="1080" aria-label="Éditeur de photo"></canvas>
+      </div>
+
+      <div class="controls">
+        <label for="zoomRange">Zoom</label>
+        <input id="zoomRange" type="range" min="1" max="3" value="1" step="0.01">
+      </div>
+
+      <div class="button-row">
+        <button class="button button-secondary" id="resetButton" type="button">Recentrer</button>
+        <button class="button button-primary" id="generateButton" type="button">Créer l’image</button>
+      </div>
+    </section>
+
+    <section class="card" id="resultSection" aria-labelledby="resultTitle" hidden>
+      <div class="section-heading">
+        <span class="step">3</span>
+        <div>
+          <h2 id="resultTitle">Votre image est prête</h2>
+          <p>Sur mobile, utilisez le partage système. Sur ordinateur, téléchargez l’image.</p>
+        </div>
+      </div>
+
+      <img id="resultImage" class="result-image" alt="Visuel final généré">
+
+      <div class="action-stack">
+        <button class="button button-primary" id="shareButton" type="button" hidden>
+          Partager l’image
+        </button>
+
+        <a class="button button-secondary" id="downloadButton" download="photo-profil.jpg">
+          Télécharger l’image
+        </a>
+
+        <a class="button button-ghost" id="facebookOpenButton"
+           href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+          Ouvrir Facebook
+        </a>
+      </div>
+
+      <div class="instructions">
+        <strong>Pour l’utiliser comme photo de profil :</strong>
+        <ol>
+          <li>Enregistrez l’image.</li>
+          <li>Ouvrez votre profil Facebook.</li>
+          <li>Choisissez la modification de la photo de profil.</li>
+          <li>Sélectionnez l’image générée et validez.</li>
+        </ol>
+      </div>
+    </section>
+
+    <footer>
+      <a href="./privacy.html">Confidentialité</a>
+      <span>·</span>
+      <span>Aucune photo n’est conservée par cette page.</span>
+    </footer>
+  </main>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/editor.js"></script>
+  <script src="./js/facebook.js"></script>
+  <script src="./js/share.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
