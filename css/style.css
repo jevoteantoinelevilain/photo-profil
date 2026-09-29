@@ -11,33 +11,101 @@
   --border: rgba(255, 255, 255, 0.58);
   --primary: #171717;
   --facebook: #1877f2;
+  --footer: #101418;
+  --footer-accent: #ff854d;
   --radius: 24px;
 }
 
 html {
   min-height: 100%;
-  background: #7b56ff;
+  /*
+    Couleurs prises dans les bords du visuel fourni.
+    Elles évitent qu'un fond violet uni apparaisse lors du rebond iOS.
+  */
+  background:
+    linear-gradient(
+      180deg,
+      #fe7462 0%,
+      #f05a9d 42%,
+      #745bff 78%,
+      #554685 100%
+    );
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   min-height: 100%;
   margin: 0;
+  overflow-x: hidden;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
+  background: transparent;
+}
 
-  /* Visuel fourni par l'utilisateur */
-  background-image:
+/*
+  Fond fixé à la fenêtre : il reste visible derrière toute la page,
+  y compris en bas sur mobile, au lieu de laisser apparaître une bande unie.
+*/
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -3;
+  inset: -3px;
+  pointer-events: none;
+  background:
     linear-gradient(
       180deg,
-      rgba(25, 10, 45, 0.05) 0%,
-      rgba(25, 10, 45, 0.12) 52%,
-      rgba(25, 10, 45, 0.24) 100%
+      rgba(26, 6, 38, 0.02) 0%,
+      rgba(26, 6, 38, 0.07) 52%,
+      rgba(26, 6, 38, 0.18) 100%
     ),
-    url("../assets/homepage-background.png");
+    url("../assets/homepage-background.png")
+      center top / cover
+      no-repeat;
+}
 
-  background-position: center top;
-  background-repeat: no-repeat;
-  background-size: cover;
+/*
+  Halo animé très léger autour de la zone du portrait.
+  Le centre est transparent afin d'éviter d'éclaircir directement le visage.
+*/
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -2;
+  top: 2vh;
+  right: -8vw;
+  width: min(76vw, 760px);
+  height: min(72vh, 820px);
+  pointer-events: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse at 54% 30%,
+      transparent 0 17%,
+      rgba(255, 255, 255, 0.10) 22%,
+      rgba(255, 212, 236, 0.18) 30%,
+      rgba(255, 255, 255, 0.08) 39%,
+      transparent 56%
+    );
+  filter: blur(11px);
+  mix-blend-mode: screen;
+  opacity: 0.62;
+  transform: scale(0.98);
+  animation: candidateGlow 4.8s ease-in-out infinite;
+}
+
+@keyframes candidateGlow {
+  0%,
+  100% {
+    opacity: 0.48;
+    transform: scale(0.97);
+  }
+
+  50% {
+    opacity: 0.72;
+    transform: scale(1.035);
+  }
 }
 
 button,
@@ -52,27 +120,48 @@ a {
   padding:
     max(34px, env(safe-area-inset-top))
     0
-    max(40px, env(safe-area-inset-bottom));
+    0;
 }
 
 .hero {
+  position: relative;
+  z-index: 2;
+  min-height: 430px;
   padding: 12px 6px 26px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.hero-copy {
+  width: min(58%, 350px);
+  padding-top: 8px;
 }
 
 .eyebrow {
-  margin: 0 0 10px;
-  font-size: 0.78rem;
+  max-width: 24ch;
+  margin: 0 0 4px;
+  font-size: 0.76rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.085em;
   text-transform: uppercase;
   color: #fff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
 }
 
+.hero-context {
+  max-width: 24ch;
+  margin: 0 0 15px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.86rem;
+  font-weight: 760;
+  line-height: 1.25;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.28);
+}
+
 h1 {
-  max-width: 580px;
+  max-width: 8ch;
   margin: 0;
-  font-size: clamp(2.4rem, 9vw, 4.5rem);
+  font-size: clamp(2.25rem, 8.3vw, 4.2rem);
   line-height: 0.94;
   letter-spacing: -0.052em;
   color: #fff;
@@ -80,15 +169,17 @@ h1 {
 }
 
 .lead {
-  max-width: 50ch;
+  max-width: 28ch;
   margin: 18px 0 0;
   color: rgba(255, 255, 255, 0.98);
-  font-size: 1.05rem;
-  line-height: 1.5;
+  font-size: 0.98rem;
+  line-height: 1.43;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.28);
 }
 
 .card {
+  position: relative;
+  z-index: 3;
   margin-top: 16px;
   padding: 20px;
   background: var(--surface);
@@ -293,21 +384,158 @@ h1 {
   margin: 8px 0 0;
 }
 
-footer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: center;
-  margin-top: 24px;
-  padding: 12px 14px;
+/* Footer social inspiré de la maquette fournie. */
+.site-footer {
+  position: relative;
+  z-index: 4;
+  width: 100vw;
+  margin-top: 44px;
+  margin-left: calc(50% - 50vw);
+  background:
+    radial-gradient(
+      circle at 25% 120%,
+      rgba(24, 46, 78, 0.62) 0 34%,
+      transparent 35%
+    ),
+    var(--footer);
   color: #fff;
-  font-size: 0.78rem;
-  text-align: center;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
 
-footer a {
-  color: inherit;
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 100% 0%,
+      transparent 0 40%,
+      rgba(255, 133, 77, 0.32) 40.4% 40.8%,
+      transparent 41.2%
+    );
+}
+
+.footer-inner {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 48px, 660px);
+  margin: 0 auto;
+  padding:
+    38px
+    0
+    max(42px, calc(env(safe-area-inset-bottom) + 26px));
+}
+
+.footer-kicker {
+  margin: 0 0 24px;
+  color: var(--footer-accent);
+  font-size: 0.93rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.social-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.social-button {
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--footer-accent);
+  border-radius: 999px;
+  color: var(--footer-accent);
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.social-button:hover,
+.social-button:focus-visible {
+  transform: translateY(-2px);
+  background: var(--footer-accent);
+  color: var(--footer);
+  outline: none;
+}
+
+.social-mark {
+  font-weight: 900;
+  line-height: 1;
+}
+
+.social-facebook {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.65rem;
+  transform: translateY(4px);
+}
+
+.social-tiktok {
+  font-size: 2.35rem;
+  transform: translateY(-1px);
+}
+
+.social-instagram {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  display: block;
+  border: 3px solid currentColor;
+  border-radius: 9px;
+}
+
+.social-instagram::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  left: 50%;
+  top: 50%;
+  border: 3px solid currentColor;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+}
+
+.social-instagram-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  right: 4px;
+  top: 4px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.footer-rule {
+  height: 1px;
+  margin: 30px 0 18px;
+  background: rgba(255, 255, 255, 0.19);
+}
+
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.legal-links a {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.78rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-note {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.76rem;
 }
 
 .visually-hidden {
@@ -323,27 +551,42 @@ footer a {
 }
 
 @media (max-width: 699px) {
-  body {
-    /*
-      L'image fournie est verticale (1080×1920).
-      On l'utilise réellement comme fond de homepage sur mobile.
-    */
-    background-size: auto max(100vh, 100svh);
-    background-position: center top;
-    background-attachment: scroll;
-  }
-
   .app-shell {
     width: min(100% - 20px, 620px);
     padding-top: max(22px, env(safe-area-inset-top));
   }
 
+  /*
+    Le portrait commence à droite : le bloc texte est limité à la partie gauche.
+  */
   .hero {
-    padding: 10px 8px 22px;
+    min-height: 430px;
+    padding: 8px 10px 22px;
+  }
+
+  .hero-copy {
+    width: 56%;
+    max-width: 235px;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .hero-context {
+    font-size: 0.78rem;
+  }
+
+  h1 {
+    max-width: 7.5ch;
+    font-size: clamp(2rem, 10vw, 2.8rem);
   }
 
   .lead {
-    font-size: 1rem;
+    max-width: 22ch;
+    font-size: 0.9rem;
+    line-height: 1.38;
   }
 
   .button-row {
@@ -354,20 +597,62 @@ footer a {
     padding: 18px;
     border-radius: 22px;
   }
+
+  body::before {
+    background-position: 52% top;
+  }
+
+  body::after {
+    top: 5vh;
+    right: -23vw;
+    width: 105vw;
+    height: 58vh;
+  }
+
+  .site-footer {
+    margin-top: 36px;
+  }
+
+  .footer-inner {
+    width: min(100% - 42px, 660px);
+    padding-top: 34px;
+  }
+
+  .social-links {
+    gap: 16px;
+  }
+
+  .social-button {
+    width: 66px;
+    height: 66px;
+  }
 }
 
 @media (min-width: 700px) {
-  body {
-    background-position: center top;
-    background-size: cover;
-    background-attachment: fixed;
-  }
-
   .app-shell {
     padding-top: 58px;
   }
 
+  .hero {
+    min-height: 520px;
+  }
+
+  .hero-copy {
+    width: min(54%, 355px);
+  }
+
   .card {
     padding: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+
+  .button,
+  .social-button {
+    transition: none;
   }
 }
