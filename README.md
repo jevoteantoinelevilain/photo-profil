@@ -1,31 +1,26 @@
-# Photo profil — V1
+# Photo profil — V15
 
-Mini-site statique déployé sur GitHub Pages.
+Refonte fidèle aux deux maquettes validées (desktop + mobile).
 
-## URL de production
-
+## Production
 `https://jevoteantoinelevilain.github.io/photo-profil/`
 
 ## Meta / Facebook Login
-
 - App ID public : `1820368572475203`
 - Graph API : `v26.0`
 - Domaine : `jevoteantoinelevilain.github.io`
-- URL du site : `https://jevoteantoinelevilain.github.io/photo-profil/`
-- Politique de confidentialité :
-  `https://jevoteantoinelevilain.github.io/photo-profil/privacy.html`
-- Suppression des données :
-  `https://jevoteantoinelevilain.github.io/photo-profil/delete-data.html`
-- Conditions d’utilisation :
-  `https://jevoteantoinelevilain.github.io/photo-profil/terms.html`
+- URL : `https://jevoteantoinelevilain.github.io/photo-profil/`
 
 Ne jamais ajouter l’App Secret Meta dans ce dépôt.
 
-## Déploiement
+## Références visuelles
+Les fichiers `reference/desktop-reference.png` et `reference/mobile-reference.png` sont inclus pour contrôle visuel, mais ne sont pas utilisés comme background de production.
 
-Le workflow `.github/workflows/main.yml` déploie automatiquement le site sur GitHub Pages à chaque push sur `main`.
-
-## Limitation Facebook
-
-Le site ne modifie pas automatiquement la photo de profil Facebook. Il génère le fichier puis laisse
-l’utilisateur l’enregistrer, le partager ou le sélectionner lui-même dans Facebook.
+## Fonctionnalités conservées
+- Facebook Login / import photo
+- sélection locale
+- éditeur canvas, zoom et déplacement
+- overlay 1080×1080
+- génération JPEG
+- téléchargement / partage mobile
+- pages légales

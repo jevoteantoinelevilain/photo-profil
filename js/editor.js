@@ -31,50 +31,37 @@
   }
 
   async function loadOverlay() {
-    if (!state.overlay) {
-      state.overlay = await loadImage(cfg.OVERLAY_SRC);
-    }
+    if (!state.overlay) state.overlay = await loadImage(cfg.OVERLAY_SRC);
     return state.overlay;
   }
 
   function computeBaseScale() {
     const img = state.source;
-    state.baseScale = Math.max(
-      canvas.width / img.naturalWidth,
-      canvas.height / img.naturalHeight
-    );
+    state.baseScale = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
   }
 
   function clampOffsets() {
     if (!state.source) return;
-
     const scale = state.baseScale * state.zoom;
     const drawW = state.source.naturalWidth * scale;
     const drawH = state.source.naturalHeight * scale;
-
     const maxX = Math.max(0, (drawW - canvas.width) / 2);
     const maxY = Math.max(0, (drawH - canvas.height) / 2);
-
     state.offsetX = Math.min(maxX, Math.max(-maxX, state.offsetX));
     state.offsetY = Math.min(maxY, Math.max(-maxY, state.offsetY));
   }
 
   function draw() {
     if (!state.source) return;
-
     const scale = state.baseScale * state.zoom;
     const drawW = state.source.naturalWidth * scale;
     const drawH = state.source.naturalHeight * scale;
     const x = (canvas.width - drawW) / 2 + state.offsetX;
     const y = (canvas.height - drawH) / 2 + state.offsetY;
-
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(state.source, x, y, drawW, drawH);
-
-    if (state.overlay) {
-      ctx.drawImage(state.overlay, 0, 0, canvas.width, canvas.height);
-    }
+    if (state.overlay) ctx.drawImage(state.overlay, 0, 0, canvas.width, canvas.height);
   }
 
   async function setSourceImage(src, options = {}) {
@@ -125,7 +112,6 @@
     canvas.setPointerCapture(event.pointerId);
     const p = canvasPoint(event);
     state.pointers.set(event.pointerId, p);
-
     if (state.pointers.size === 1) {
       state.lastPointer = p;
       state.pinchDistance = null;
@@ -138,10 +124,8 @@
 
   canvas.addEventListener("pointermove", (event) => {
     if (!state.pointers.has(event.pointerId)) return;
-
     const p = canvasPoint(event);
     state.pointers.set(event.pointerId, p);
-
     if (state.pointers.size === 1 && state.lastPointer) {
       state.offsetX += p.x - state.lastPointer.x;
       state.offsetY += p.y - state.lastPointer.y;
@@ -150,11 +134,9 @@
       draw();
       return;
     }
-
     if (state.pointers.size === 2 && state.pinchDistance) {
       const d = pointerDistance();
       if (!d) return;
-
       const nextZoom = Math.min(3, Math.max(1, state.pinchZoomStart * (d / state.pinchDistance)));
       state.zoom = nextZoom;
       zoomRange.value = String(nextZoom);
@@ -165,7 +147,6 @@
 
   function endPointer(event) {
     state.pointers.delete(event.pointerId);
-
     if (state.pointers.size === 1) {
       state.lastPointer = Array.from(state.pointers.values())[0];
       state.pinchDistance = null;
@@ -178,25 +159,14 @@
   canvas.addEventListener("pointerup", endPointer);
   canvas.addEventListener("pointercancel", endPointer);
   canvas.addEventListener("pointerleave", (event) => {
-    if (event.pointerType === "mouse" && state.pointers.has(event.pointerId)) {
-      endPointer(event);
-    }
+    if (event.pointerType === "mouse" && state.pointers.has(event.pointerId)) endPointer(event);
   });
 
   function exportBlob() {
     return new Promise((resolve, reject) => {
-      canvas.toBlob(
-        (blob) => blob ? resolve(blob) : reject(new Error("Échec de la génération JPEG.")),
-        "image/jpeg",
-        0.92
-      );
+      canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error("Échec de la génération JPEG.")), "image/jpeg", 0.92);
     });
   }
 
-  window.PhotoEditor = {
-    setSourceImage,
-    reset,
-    draw,
-    exportBlob
-  };
+  window.PhotoEditor = { setSourceImage, reset, draw, exportBlob };
 })();

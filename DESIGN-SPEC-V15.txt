@@ -1,0 +1,724 @@
+MISSION
+
+Tu dois modifier le mini-site existant de création de photo de profil afin de reproduire LE PLUS FIDÈLEMENT POSSIBLE les deux maquettes de référence fournies :
+
+1. maquette DESKTOP validée ;
+2. maquette MOBILE validée.
+
+Ces deux images constituent la SOURCE DE VÉRITÉ visuelle.
+
+Ne fais pas évoluer le design.
+Ne propose pas une nouvelle direction artistique.
+Ne réinterprète pas la composition.
+Ne change pas les textes.
+Ne remplace pas les couleurs par des couleurs “proches”.
+Ne change pas les proportions au prétexte d’améliorer le responsive.
+
+L’objectif est que, lorsqu’on ouvre le site dans les dimensions correspondant aux maquettes, le rendu soit visuellement quasi identique aux références.
+
+
+==================================================
+1. PRINCIPES GÉNÉRAUX
+==================================================
+
+Le site est une landing page de création d’une photo de profil personnalisée.
+
+L’interface repose sur 4 éléments principaux :
+
+- un fond premium violet / rose / corail ;
+- un bloc éditorial blanc à gauche ;
+- le portrait détouré d’Antoine Le Vilain ;
+- une grande carte blanche contenant les actions utilisateur.
+
+Le portrait détouré d’Antoine doit utiliser le PNG transparent fourni comme asset réel du site.
+
+Ne jamais intégrer Antoine directement dans un background raster complet : il doit rester un élément HTML indépendant afin de permettre un responsive précis.
+
+Utiliser autant que possible :
+- HTML sémantique ;
+- CSS moderne ;
+- Grid / Flexbox ;
+- positionnement absolu uniquement lorsque nécessaire pour reproduire la maquette ;
+- clamp() pour les tailles fluides ;
+- dvh / svh lorsque pertinent sur mobile.
+
+Interdiction absolue de scroll horizontal.
+
+Appliquer :
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+Vérifier également qu’aucun élément positionné en absolu ne crée de débordement horizontal.
+
+
+==================================================
+2. PALETTE GRAPHIQUE
+==================================================
+
+Reproduire exactement l’impression visuelle des maquettes :
+
+Fond :
+- violet intense à gauche / haut gauche ;
+- magenta / rose au centre ;
+- rose chaud / corail à droite.
+
+Créer un gradient premium et doux, par exemple avec plusieurs radial-gradient + linear-gradient.
+
+Base indicative :
+
+violet : #7A42F4
+magenta : #C83FC7
+rose : #ED4E9A
+corail : #FF765E
+
+Ces valeurs peuvent être très légèrement ajustées uniquement pour reproduire la maquette.
+
+IMPORTANT :
+le fond doit rester cohérent du haut jusqu’au footer.
+
+Aucune rupture de couleur brutale entre :
+- hero ;
+- carte ;
+- contenu ;
+- footer.
+
+Ajouter les grandes formes courbes très discrètes visibles dans les maquettes :
+- transparence faible ;
+- même famille colorimétrique ;
+- aucune bordure forte ;
+- aucune décoration supplémentaire.
+
+
+==================================================
+3. TYPOGRAPHIE
+==================================================
+
+Utiliser une sans-serif moderne et très lisible.
+
+Priorité :
+Inter / system-ui / Arial / sans-serif.
+
+Le titre principal est :
+- très gros ;
+- blanc ;
+- très gras ;
+- légèrement condensé visuellement ;
+- interligne très serré ;
+- letter-spacing négatif.
+
+Valeurs indicatives desktop :
+
+font-weight: 800 ou 900
+line-height: 0.90 à 0.95
+letter-spacing: -0.055em à -0.075em
+
+Le reste du texte doit être beaucoup plus léger.
+
+Ne jamais utiliser une taille tellement grande que le titre sort du viewport ou soit coupé par le navigateur.
+
+
+==================================================
+4. CONTENU TEXTUEL EXACT
+==================================================
+
+SUR-TITRE :
+
+ÉLECTION LÉGISLATIVE PARTIELLE
+
+Sous celui-ci :
+
+3e circonscription du Cher
+
+
+TITRE PRINCIPAL :
+
+Créez votre
+photo de soutien
+
+
+TEXTE INTRODUCTIF :
+
+Affichez fièrement votre soutien à Antoine Le Vilain avec un visuel élégant, positif et prêt à partager.
+Importez votre photo, personnalisez-la en quelques instants et faites rayonner votre engagement sur tous vos réseaux.
+
+
+CARTE PRINCIPALE :
+
+Numéro :
+1
+
+Titre :
+Choisissez votre photo
+
+Description :
+Commencez avec votre photo actuelle pour créer votre visuel de soutien personnalisé.
+
+
+CTA FACEBOOK :
+
+Utiliser ma photo Facebook
+
+
+Séparateur :
+
+ou
+
+
+CTA APPAREIL :
+
+Choisir une photo sur mon appareil
+
+
+TEXTE CONFIDENTIALITÉ SOUS LES BOUTONS :
+
+Votre photo reste entièrement sous votre contrôle :
+elle est traitée sur votre appareil et rien n’est publié automatiquement.
+
+
+FOOTER :
+
+SUIVRE ANTOINE
+
+
+Liens :
+
+Facebook
+https://www.facebook.com/antoinelevilain18
+
+Instagram
+https://www.instagram.com/antoine_le_vilain/
+
+TikTok
+https://www.tiktok.com/@antoinelevilain
+
+
+Liens légaux :
+
+Confidentialité
+Suppression des données
+Conditions
+
+
+Mention :
+
+Aucune photo n’est conservée par cette page.
+
+
+==================================================
+5. VERSION DESKTOP — SOURCE DE VÉRITÉ
+==================================================
+
+Reproduire exactement la maquette desktop validée.
+
+Le hero doit occuper environ la hauteur d’un écran.
+
+Créer un container central avec une largeur maximum suffisamment grande, environ :
+
+max-width: 1350 à 1450px
+
+et :
+
+margin-inline: auto
+
+
+------------------------------
+COLONNE GAUCHE
+------------------------------
+
+La zone gauche comporte :
+
+1. sur-titre ;
+2. circonscription ;
+3. grand titre ;
+4. paragraphe ;
+5. carte blanche.
+
+Tous ces éléments doivent être parfaitement lisibles.
+
+Le bloc de texte doit commencer suffisamment loin du bord gauche.
+
+Environ :
+
+padding-left visuel : 5 à 8 % du viewport.
+
+Le titre principal ne doit pas dépasser environ 45 % de la largeur disponible.
+
+Il doit avoir environ 2 lignes principales :
+
+Créez votre
+photo de soutien
+
+Éviter une découpe excessive du titre en 4 ou 5 lignes.
+
+
+------------------------------
+PORTRAIT DESKTOP
+------------------------------
+
+Antoine doit occuper TOUTE la partie droite.
+
+Il doit être beaucoup plus grand que dans les premières versions du site.
+
+Aspect attendu :
+
+- tête proche du haut de la composition ;
+- épaules larges ;
+- corps occupant environ 45 à 50 % de la largeur totale ;
+- visage clairement visible ;
+- corps descendant jusqu’au footer.
+
+Le personnage doit être ancré :
+
+right: 0
+bottom: 0
+
+dans le hero.
+
+Le footer peut masquer / couper légèrement la partie basse du personnage.
+
+IMPORTANT :
+
+Le personnage ne doit PAS s’arrêter avant le footer.
+
+Sa partie basse doit visuellement entrer derrière la zone inférieure / footer comme dans la maquette.
+
+
+------------------------------
+CARTE BLANCHE DESKTOP
+------------------------------
+
+La carte blanche doit être DEVANT le portrait.
+
+Utiliser un z-index supérieur à Antoine.
+
+Elle doit chevaucher légèrement la zone occupée par le corps d’Antoine si nécessaire.
+
+C’est volontaire.
+
+Position attendue :
+- partie inférieure gauche ;
+- suffisamment large ;
+- environ 560 à 640 px suivant largeur écran.
+
+Aspect :
+- fond blanc / blanc cassé ;
+- coins très arrondis ;
+- ombre très douce ;
+- pas de transparence excessive.
+
+Rayon :
+26 à 32 px.
+
+La carte ne doit pas être collée au bas du viewport.
+
+
+------------------------------
+BOUTON FACEBOOK
+------------------------------
+
+Bouton bleu plein.
+
+Hauteur généreuse :
+environ 58 à 64 px.
+
+Icône Facebook dans cercle blanc à gauche.
+
+Texte centré verticalement.
+
+Chevron à droite.
+
+Rayon :
+16 à 18 px.
+
+
+------------------------------
+BOUTON PHOTO APPAREIL
+------------------------------
+
+Fond blanc.
+
+Fine bordure rose.
+
+Icône image rose.
+
+Texte noir / très foncé.
+
+Chevron sombre.
+
+Même hauteur générale que le bouton Facebook.
+
+
+==================================================
+6. VERSION MOBILE — SOURCE DE VÉRITÉ
+==================================================
+
+La maquette mobile doit être reproduite comme un DESIGN MOBILE À PART ENTIÈRE.
+
+Ne pas simplement réduire la version desktop.
+
+Breakpoint principal indicatif :
+
+@media (max-width: 700px)
+
+
+------------------------------
+STRUCTURE MOBILE
+------------------------------
+
+L’écran comporte dans l’ordre :
+
+1. sur-titre ;
+2. circonscription ;
+3. grand titre ;
+4. paragraphe ;
+5. portrait Antoine ;
+6. carte blanche qui chevauche légèrement le portrait ;
+7. footer.
+
+Le tout doit être contenu dans la largeur de l’écran.
+
+Aucun scroll horizontal.
+
+
+------------------------------
+POSITION D’ANTOINE MOBILE
+------------------------------
+
+Antoine doit être nettement visible dans la moitié droite du hero.
+
+La tête ne doit JAMAIS être recouverte par le texte.
+
+Le visage doit rester dans une zone dégagée.
+
+Le personnage peut passer derrière :
+- une partie du paragraphe ;
+- la carte blanche.
+
+Mais pas derrière :
+- le grand titre au niveau du visage ;
+- le sur-titre.
+
+Position visuelle proche de la maquette :
+
+- tête située vers 35 à 45 % de la hauteur de la première section ;
+- personnage décalé à droite ;
+- environ 55 à 65 % de largeur de viewport ;
+- bas du personnage derrière la carte.
+
+Utiliser object-fit: contain.
+
+Ne jamais couper le visage.
+
+
+------------------------------
+TITRE MOBILE
+------------------------------
+
+Conserver :
+
+Créez votre
+photo de
+soutien
+
+ou une répartition équivalente à la maquette.
+
+Le texte doit être gros mais rester entièrement visible.
+
+Il doit occuper environ 55 % de la largeur du hero.
+
+Antoine occupe la zone restante à droite.
+
+
+------------------------------
+PARAGRAPHE MOBILE
+------------------------------
+
+Le paragraphe doit rester compact.
+
+NE PAS créer une colonne de seulement 8 à 10 caractères de large.
+
+La largeur doit être suffisante pour obtenir des lignes naturelles.
+
+Valeur cible :
+
+width: environ 45 à 52vw
+max-width: environ 220px
+
+Suivre la composition exacte de la maquette validée.
+
+Le texte peut légèrement passer devant le costume d’Antoine si nécessaire.
+
+Il ne doit jamais passer devant son visage.
+
+
+------------------------------
+CARTE MOBILE
+------------------------------
+
+La carte commence dans la partie basse du hero.
+
+Elle chevauche légèrement le portrait.
+
+Elle doit pratiquement remplir la largeur disponible.
+
+Exemple :
+
+width: calc(100% - 32px)
+margin-inline: auto
+
+Rayon :
+28 à 32px.
+
+Padding :
+22 à 26 px.
+
+Conserver une hiérarchie très nette :
+
+numéro
+titre
+description
+
+puis bouton Facebook
+
+séparateur
+
+bouton appareil
+
+puis texte confidentialité.
+
+
+------------------------------
+FOOTER MOBILE
+------------------------------
+
+Le footer fait partie du même univers graphique.
+
+Ne jamais introduire :
+- noir ;
+- bleu marine ;
+- orange isolé ;
+- autre palette.
+
+Il utilise le même fond rose / magenta que le site.
+
+Titre :
+
+SUIVRE ANTOINE
+
+Avec lignes décoratives fines à gauche et à droite.
+
+Sous le titre :
+3 boutons sociaux ronds.
+
+Facebook
+Instagram
+TikTok
+
+Puis les trois liens légaux.
+
+Puis la mention :
+
+Aucune photo n’est conservée par cette page.
+
+
+==================================================
+7. RESPONSIVE DESKTOP
+==================================================
+
+Le design doit rester stable pour :
+
+1366 × 768
+1440 × 900
+1536 × 864
+1920 × 1080
+2048 × environ 1130
+
+Ne jamais utiliser une seule valeur fixe calculée pour un écran précis.
+
+Employer clamp().
+
+Exemple portrait :
+
+height: clamp(850px, 95vh, 1250px)
+
+Exemple titre :
+
+font-size: clamp(64px, 6vw, 104px)
+
+
+==================================================
+8. RESPONSIVE MOBILE
+==================================================
+
+Tester au minimum :
+
+375 × 812
+390 × 844
+393 × 852
+430 × 932
+
+et Safari iOS.
+
+Attention au navigateur Safari :
+
+utiliser :
+100svh
+ou
+100dvh
+
+plutôt que seulement 100vh.
+
+Prévoir :
+
+padding-bottom: env(safe-area-inset-bottom)
+
+
+==================================================
+9. COMPORTEMENT DU SCROLL
+==================================================
+
+Il doit être impossible de déplacer horizontalement la page.
+
+Tester réellement :
+
+document.documentElement.scrollWidth === window.innerWidth
+
+à quelques pixels près.
+
+Le portrait ne doit jamais augmenter le scrollWidth.
+
+Éviter :
+
+right: -200px
+
+si cela génère un overflow réel.
+
+Si un élément déborde visuellement, son parent doit avoir :
+
+overflow: clip
+
+ou :
+
+overflow: hidden
+
+
+==================================================
+10. FONCTIONNALITÉS EXISTANTES À CONSERVER
+==================================================
+
+Ne casser aucune fonctionnalité existante.
+
+Conserver :
+
+- connexion / import Facebook existant ;
+- sélection d’une image locale ;
+- éditeur canvas ;
+- zoom ;
+- repositionnement de la photo ;
+- overlay de campagne ;
+- génération de l’image finale ;
+- téléchargement ;
+- partage mobile si disponible ;
+- liens Facebook / Instagram / TikTok ;
+- pages Confidentialité ;
+- Suppression des données ;
+- Conditions.
+
+Le redesign doit concerner principalement :
+- index.html ;
+- CSS ;
+- éventuellement les wrappers HTML.
+
+Ne pas réécrire la logique Facebook si elle fonctionne actuellement.
+
+
+==================================================
+11. OVERLAY DE PHOTO
+==================================================
+
+Conserver l’overlay 1080 × 1080 actuellement validé.
+
+Le fichier doit rester indépendant du design de la homepage.
+
+La homepage utilise :
+- le portrait détouré d’Antoine.
+
+L’éditeur utilise :
+- l’overlay graphique 1080 × 1080.
+
+Ne pas mélanger ces deux assets.
+
+
+==================================================
+12. Z-INDEX À RESPECTER
+==================================================
+
+Ordre recommandé :
+
+fond abstrait : 0
+portrait Antoine : 2
+texte hero : 4
+carte blanche : 6
+footer : 8 ou 9
+
+La carte blanche desktop doit donc bien passer devant Antoine.
+
+
+==================================================
+13. CONTRÔLE QUALITÉ FINAL
+==================================================
+
+Avant de considérer le travail terminé :
+
+Comparer visuellement le site avec LES DEUX IMAGES DE RÉFÉRENCE.
+
+Vérifier desktop :
+- titre entièrement visible ;
+- texte lisible ;
+- Antoine très grand à droite ;
+- carte blanche devant Antoine ;
+- pas de vide bizarre entre Antoine et footer ;
+- pas de halo ;
+- même gradient général ;
+- proportions identiques à la maquette.
+
+Vérifier mobile :
+- aucune possibilité de scroll horizontal ;
+- aucun texte devant le visage ;
+- Antoine correctement centré / décalé à droite ;
+- carte blanche parfaitement centrée ;
+- boutons non coupés ;
+- Safari bottom bar n’empêche pas l’accès aux actions ;
+- footer entièrement visible ;
+- cohérence parfaite des couleurs.
+
+Ne considère pas le travail comme terminé simplement parce que le CSS est valide.
+
+Le critère final est :
+
+« Est-ce que la capture d’écran du site pourrait être confondue avec la maquette fournie ? »
+
+Si la réponse est non, continuer les ajustements.
+
+
+==================================================
+14. RÈGLE ABSOLUE
+==================================================
+
+LES DEUX MAQUETTES FOURNIES SONT LA SOURCE DE VÉRITÉ.
+
+Ne cherche pas à “améliorer” leur composition.
+Ne cherche pas à créer une troisième interprétation.
+Ne modifie pas l’échelle relative d’Antoine, de la carte ou du titre sans nécessité responsive.
+
+Le résultat attendu est une implémentation web fidèle des deux maquettes validées :
+- une composition desktop ;
+- une composition mobile ;
+- le même langage graphique ;
+- les mêmes contenus ;
+- les mêmes proportions visuelles.
