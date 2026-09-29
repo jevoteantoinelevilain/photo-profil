@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#ff4fae">
+  <meta name="theme-color" content="#fe7462">
   <meta name="description" content="Créez votre photo de profil personnalisée à partir de votre photo Facebook ou d’une image de votre appareil.">
   <title>Créer ma photo de profil</title>
   <link rel="stylesheet" href="./css/style.css">
@@ -13,11 +13,14 @@
 
   <main class="app-shell">
     <header class="hero">
-      <p class="eyebrow">Élection législative partielle · 3e circonscription du Cher</p>
-      <h1>Créez votre photo de soutien</h1>
-      <p class="lead">
-        Importez votre photo, ajustez-la et générez votre visuel personnalisé en quelques secondes.
-      </p>
+      <div class="hero-copy">
+        <p class="eyebrow">Élection législative partielle</p>
+        <p class="hero-context">3e circonscription du Cher</p>
+        <h1>Créez votre visuel</h1>
+        <p class="lead">
+          Personnalisez votre photo de profil avec le visuel « Je soutiens Antoine Le Vilain ».
+        </p>
+      </div>
     </header>
 
     <section class="card" id="sourceSection" aria-labelledby="sourceTitle">
@@ -117,14 +120,54 @@
       </div>
     </section>
 
-    <footer>
-      <a href="./privacy.html">Confidentialité</a>
-      <span>·</span>
-      <a href="./delete-data.html">Suppression des données</a>
-      <span>·</span>
-      <a href="./terms.html">Conditions</a>
-      <span>·</span>
-      <span>Aucune photo n’est conservée par cette page.</span>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p class="footer-kicker">SUIVRE ANTOINE</p>
+
+        <div class="social-links" aria-label="Réseaux sociaux d’Antoine Le Vilain">
+          <a
+            class="social-button"
+            href="https://www.facebook.com/antoinelevilain18"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook d’Antoine Le Vilain"
+          >
+            <span class="social-mark social-facebook" aria-hidden="true">f</span>
+          </a>
+
+          <a
+            class="social-button"
+            href="https://www.instagram.com/antoine_le_vilain/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram d’Antoine Le Vilain"
+          >
+            <span class="social-instagram" aria-hidden="true">
+              <span class="social-instagram-dot"></span>
+            </span>
+          </a>
+
+          <a
+            class="social-button"
+            href="https://www.tiktok.com/@antoinelevilain"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok d’Antoine Le Vilain"
+          >
+            <span class="social-mark social-tiktok" aria-hidden="true">♪</span>
+          </a>
+        </div>
+
+        <div class="footer-rule"></div>
+
+        <nav class="legal-links" aria-label="Liens légaux">
+          <a href="./privacy.html">Confidentialité</a>
+          <a href="./delete-data.html">Suppression des données</a>
+          <a href="./terms.html">Conditions</a>
+        </nav>
+
+        <p class="footer-note">Aucune photo n’est conservée par cette page.</p>
+      </div>
     </footer>
   </main>
 
