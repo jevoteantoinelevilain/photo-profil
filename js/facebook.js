@@ -56,7 +56,7 @@
           FB.api(
             "/me",
             "GET",
-            { fields: "id,name,picture.width(1080).height(1080)" },
+            { fields: "id,picture.width(1080).height(1080)" },
             (profile) => {
               if (!profile || profile.error) {
                 reject(new Error(profile?.error?.message || "Impossible de lire le profil Facebook."));
@@ -69,10 +69,7 @@
                 return;
               }
 
-              resolve({
-                name: profile.name || "",
-                pictureUrl: url
-              });
+              resolve({ pictureUrl: url });
             }
           );
         }, { scope: "public_profile" });
