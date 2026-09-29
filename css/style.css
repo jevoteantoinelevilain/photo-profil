@@ -1017,3 +1017,31 @@ h1 > span { display: block; white-space: nowrap; }
 
   .social-links { gap: 20px; }
 }
+
+/* V17 desktop validation patch */
+.lead strong {
+  font-weight: 800;
+  color: #fff;
+}
+
+@media (min-width: 701px) {
+  .top-stage {
+    min-height: 900px;
+  }
+
+  .source-card {
+    top: 470px;
+    bottom: auto;
+  }
+
+  .site-footer {
+    margin-top: 20px;
+    min-height: 130px;
+    background: linear-gradient(180deg, rgba(200, 63, 199, 0) 0%, rgba(181, 51, 149, 0.10) 100%);
+  }
+
+  .footer-inner {
+    padding-top: 24px;
+    padding-bottom: 28px;
+  }
+}
