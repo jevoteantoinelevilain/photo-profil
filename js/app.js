@@ -9,6 +9,8 @@
   const resultImage = document.getElementById("resultImage");
   const shareButton = document.getElementById("shareButton");
   const downloadButton = document.getElementById("downloadButton");
+  const facebookButtonLabel = facebookButton.querySelector(".button-label");
+  const generateButtonLabel = generateButton.querySelector(".button-label");
 
   let resultBlob = null;
   let resultUrl = null;
@@ -103,13 +105,13 @@
 
     if (window.FacebookImport.usesRedirectFlow()) {
       facebookButton.disabled = true;
-      facebookButton.textContent = "Ouverture de Facebook…";
+      facebookButtonLabel.textContent = "Ouverture de Facebook…";
 
       try {
         window.FacebookImport.startRedirectLogin();
       } catch (error) {
         facebookButton.disabled = false;
-        facebookButton.textContent =
+        facebookButtonLabel.textContent =
           "Importer ma photo Facebook";
 
         showNotice(
@@ -131,7 +133,7 @@
     }
 
     facebookButton.disabled = true;
-    facebookButton.textContent =
+    facebookButtonLabel.textContent =
       "Connexion à Facebook…";
 
     window.FacebookImport.popupLogin()
@@ -145,7 +147,7 @@
       })
       .finally(() => {
         facebookButton.disabled = false;
-        facebookButton.textContent =
+        facebookButtonLabel.textContent =
           "Importer ma photo Facebook";
       });
   });
@@ -156,7 +158,7 @@
 
   generateButton.addEventListener("click", async () => {
     generateButton.disabled = true;
-    generateButton.textContent =
+    generateButtonLabel.textContent =
       "Création du visuel…";
 
     try {
@@ -191,7 +193,7 @@
       );
     } finally {
       generateButton.disabled = false;
-      generateButton.textContent =
+      generateButtonLabel.textContent =
         "Créer mon visuel";
     }
   });
@@ -231,7 +233,7 @@
 
       if (redirectProfile) {
         facebookButton.disabled = true;
-        facebookButton.textContent =
+        facebookButtonLabel.textContent =
           "Récupération de votre photo…";
 
         await useFacebookPicture(
@@ -248,24 +250,24 @@
 
     if (window.FacebookImport.usesRedirectFlow()) {
       facebookButton.disabled = false;
-      facebookButton.textContent =
+      facebookButtonLabel.textContent =
         "Importer ma photo Facebook";
       return;
     }
 
     facebookButton.disabled = true;
-    facebookButton.textContent =
+    facebookButtonLabel.textContent =
       "Préparation de Facebook…";
 
     try {
       await window.FacebookImport.loadSdk();
 
       facebookButton.disabled = false;
-      facebookButton.textContent =
+      facebookButtonLabel.textContent =
         "Importer ma photo Facebook";
     } catch (error) {
       facebookButton.disabled = false;
-      facebookButton.textContent =
+      facebookButtonLabel.textContent =
         "Réessayer Facebook";
 
       showNotice(
