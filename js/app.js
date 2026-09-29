@@ -28,27 +28,69 @@
   function showEditor() {
     editorSection.hidden = false;
     resultSection.hidden = true;
-    editorSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    editorSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+  async function useFacebookPicture(profile) {
+    try {
+      await window.PhotoEditor.setSourceImage(
+        profile.pictureUrl,
+        profile.objectUrl
+          ? {}
+          : { crossOrigin: "anonymous" }
+      );
+
+      if (profile.objectUrl) {
+        URL.revokeObjectURL(profile.pictureUrl);
+      }
+
+      hideNotice();
+      showEditor();
+    } catch (error) {
+      if (profile.objectUrl) {
+        URL.revokeObjectURL(profile.pictureUrl);
+      }
+
+      showNotice(
+        "La connexion Facebook a réussi, mais votre navigateur empêche l’utilisation directe de cette photo. Choisissez la même photo depuis votre appareil pour continuer.",
+        true
+      );
+    }
   }
 
   async function loadLocalFile(file) {
     if (!file) return;
 
     if (!file.type.startsWith("image/")) {
-      showNotice("Choisissez un fichier image pour continuer.", true);
+      showNotice(
+        "Choisissez un fichier image pour continuer.",
+        true
+      );
       return;
     }
 
     hideNotice();
+
     const localUrl = URL.createObjectURL(file);
 
     try {
       await window.PhotoEditor.setSourceImage(localUrl);
       showEditor();
     } catch (error) {
-      showNotice(error.message || "Impossible de charger cette photo. Essayez avec une autre image.", true);
+      showNotice(
+        error.message ||
+          "Impossible de charger cette photo. Essayez avec une autre image.",
+        true
+      );
     } finally {
-      setTimeout(() => URL.revokeObjectURL(localUrl), 1000);
+      setTimeout(
+        () => URL.revokeObjectURL(localUrl),
+        1000
+      );
     }
   }
 
@@ -56,62 +98,55 @@
     loadLocalFile(fileInput.files?.[0]);
   });
 
-  async function prepareFacebook() {
-    if (!window.FacebookImport.configured()) {
-      showNotice("L’import Facebook n’est pas disponible pour le moment. Vous pouvez choisir une photo sur votre appareil.", true);
-      facebookButton.disabled = true;
-      return;
-    }
-
-    facebookButton.disabled = true;
-    facebookButton.textContent = "Préparation de Facebook…";
-
-    try {
-      await window.FacebookImport.loadSdk();
-      facebookButton.disabled = false;
-      facebookButton.textContent = "Importer ma photo Facebook";
-    } catch (error) {
-      facebookButton.disabled = false;
-      facebookButton.textContent = "Réessayer l’import Facebook";
-      showNotice("Facebook n’a pas pu être préparé. Vous pouvez réessayer ou choisir une photo sur votre appareil.", true);
-    }
-  }
-
   facebookButton.addEventListener("click", () => {
     hideNotice();
 
+    if (window.FacebookImport.usesRedirectFlow()) {
+      facebookButton.disabled = true;
+      facebookButton.textContent = "Ouverture de Facebook…";
+
+      try {
+        window.FacebookImport.startRedirectLogin();
+      } catch (error) {
+        facebookButton.disabled = false;
+        facebookButton.textContent =
+          "Importer ma photo Facebook";
+
+        showNotice(
+          error.message ||
+            "Impossible d’ouvrir Facebook.",
+          true
+        );
+      }
+
+      return;
+    }
+
     if (!window.FacebookImport.isReady()) {
-      showNotice("Facebook se prépare. Touchez à nouveau le bouton dans un instant.", true);
-      prepareFacebook();
+      showNotice(
+        "Facebook est encore en cours de préparation. Réessayez dans un instant.",
+        true
+      );
       return;
     }
 
     facebookButton.disabled = true;
-    facebookButton.textContent = "Connexion à Facebook…";
+    facebookButton.textContent =
+      "Connexion à Facebook…";
 
-    const loginPromise = window.FacebookImport.login();
-
-    loginPromise
-      .then(async (profile) => {
-        try {
-          await window.PhotoEditor.setSourceImage(profile.pictureUrl, {
-            crossOrigin: "anonymous"
-          });
-
-          showEditor();
-        } catch (corsError) {
-          showNotice(
-            "La connexion Facebook a réussi, mais votre navigateur empêche l’import direct de la photo. Choisissez la même photo depuis votre appareil pour continuer.",
-            true
-          );
-        }
-      })
+    window.FacebookImport.popupLogin()
+      .then(useFacebookPicture)
       .catch((error) => {
-        showNotice(error.message || "La connexion Facebook n’a pas abouti. Vous pouvez réessayer ou choisir une photo sur votre appareil.", true);
+        showNotice(
+          error.message ||
+            "La connexion Facebook n’a pas abouti.",
+          true
+        );
       })
       .finally(() => {
         facebookButton.disabled = false;
-        facebookButton.textContent = "Importer ma photo Facebook";
+        facebookButton.textContent =
+          "Importer ma photo Facebook";
       });
   });
 
@@ -121,25 +156,43 @@
 
   generateButton.addEventListener("click", async () => {
     generateButton.disabled = true;
-    generateButton.textContent = "Création de votre visuel…";
+    generateButton.textContent =
+      "Création du visuel…";
 
     try {
-      resultBlob = await window.PhotoEditor.exportBlob();
+      resultBlob =
+        await window.PhotoEditor.exportBlob();
 
-      if (resultUrl) URL.revokeObjectURL(resultUrl);
+      if (resultUrl) {
+        URL.revokeObjectURL(resultUrl);
+      }
+
       resultUrl = URL.createObjectURL(resultBlob);
 
       resultImage.src = resultUrl;
       downloadButton.href = resultUrl;
-      shareButton.hidden = !(await window.ShareTools.canShareBlob(resultBlob));
+
+      shareButton.hidden = !(
+        await window.ShareTools.canShareBlob(
+          resultBlob
+        )
+      );
 
       resultSection.hidden = false;
-      resultSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      resultSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     } catch (error) {
-      alert(error.message || "Impossible de générer le visuel.");
+      alert(
+        error.message ||
+          "Impossible de générer le visuel."
+      );
     } finally {
       generateButton.disabled = false;
-      generateButton.textContent = "Créer ma photo de soutien";
+      generateButton.textContent =
+        "Créer mon visuel";
     }
   });
 
@@ -147,13 +200,80 @@
     if (!resultBlob) return;
 
     try {
-      await window.ShareTools.shareBlob(resultBlob);
+      await window.ShareTools.shareBlob(
+        resultBlob
+      );
     } catch (error) {
       if (error?.name !== "AbortError") {
-        alert(error.message || "Le partage n’a pas pu être ouvert. Vous pouvez enregistrer l’image puis la partager depuis votre téléphone.");
+        alert(
+          error.message ||
+            "Le partage n’a pas pu être ouvert."
+        );
       }
     }
   });
 
-  prepareFacebook();
+  async function bootstrapFacebook() {
+    if (!window.FacebookImport.configured()) {
+      facebookButton.disabled = true;
+
+      showNotice(
+        "L’import Facebook n’est pas disponible pour le moment. Vous pouvez choisir une photo sur votre appareil.",
+        true
+      );
+
+      return;
+    }
+
+    try {
+      const redirectProfile =
+        await window.FacebookImport.consumeRedirectLogin();
+
+      if (redirectProfile) {
+        facebookButton.disabled = true;
+        facebookButton.textContent =
+          "Récupération de votre photo…";
+
+        await useFacebookPicture(
+          redirectProfile
+        );
+      }
+    } catch (error) {
+      showNotice(
+        error.message ||
+          "La connexion Facebook n’a pas abouti.",
+        true
+      );
+    }
+
+    if (window.FacebookImport.usesRedirectFlow()) {
+      facebookButton.disabled = false;
+      facebookButton.textContent =
+        "Importer ma photo Facebook";
+      return;
+    }
+
+    facebookButton.disabled = true;
+    facebookButton.textContent =
+      "Préparation de Facebook…";
+
+    try {
+      await window.FacebookImport.loadSdk();
+
+      facebookButton.disabled = false;
+      facebookButton.textContent =
+        "Importer ma photo Facebook";
+    } catch (error) {
+      facebookButton.disabled = false;
+      facebookButton.textContent =
+        "Réessayer Facebook";
+
+      showNotice(
+        "Facebook n’a pas pu être préparé. Vous pouvez réessayer ou choisir une photo sur votre appareil.",
+        true
+      );
+    }
+  }
+
+  bootstrapFacebook();
 })();
