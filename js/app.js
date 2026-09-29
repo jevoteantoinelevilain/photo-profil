@@ -112,7 +112,7 @@
       } catch (error) {
         facebookButton.disabled = false;
         facebookButtonLabel.textContent =
-          "Importer ma photo Facebook";
+          "Utiliser ma photo Facebook";
 
         showNotice(
           error.message ||
@@ -148,7 +148,7 @@
       .finally(() => {
         facebookButton.disabled = false;
         facebookButtonLabel.textContent =
-          "Importer ma photo Facebook";
+          "Utiliser ma photo Facebook";
       });
   });
 
@@ -159,7 +159,7 @@
   generateButton.addEventListener("click", async () => {
     generateButton.disabled = true;
     generateButtonLabel.textContent =
-      "Création du visuel…";
+      "Création de votre photo…";
 
     try {
       resultBlob =
@@ -194,7 +194,7 @@
     } finally {
       generateButton.disabled = false;
       generateButtonLabel.textContent =
-        "Créer mon visuel";
+        "Créer ma photo de soutien";
     }
   });
 
@@ -251,7 +251,7 @@
     if (window.FacebookImport.usesRedirectFlow()) {
       facebookButton.disabled = false;
       facebookButtonLabel.textContent =
-        "Importer ma photo Facebook";
+        "Utiliser ma photo Facebook";
       return;
     }
 
@@ -264,7 +264,7 @@
 
       facebookButton.disabled = false;
       facebookButtonLabel.textContent =
-        "Importer ma photo Facebook";
+        "Utiliser ma photo Facebook";
     } catch (error) {
       facebookButton.disabled = false;
       facebookButtonLabel.textContent =
