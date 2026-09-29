@@ -3,157 +3,186 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fb67ad">
-  <meta name="description" content="Créez votre photo de profil personnalisée à partir de votre photo Facebook ou d’une image de votre appareil.">
+  <meta name="theme-color" content="#c72f73">
+  <meta name="description" content="Créez votre photo de profil personnalisée.">
   <title>Créer ma photo de profil</title>
-  <link rel="stylesheet" href="./css/style.css?v=8">
+  <link rel="stylesheet" href="./css/style.css?v=9">
 </head>
 <body>
   <div id="fb-root"></div>
 
-  <main class="app-shell">
-    <header class="hero">
+  <main>
+    <section class="top-stage">
       <div class="hero-copy">
         <p class="eyebrow">Élection législative partielle</p>
         <p class="hero-context">3e circonscription du Cher</p>
-        <h1>Créez votre visuel</h1>
+
+        <h1>Créez votre<br>photo de profil</h1>
+
         <p class="lead">
-          Créez votre photo de profil personnalisée à partir de votre image.
+          Personnalisez votre photo avec le visuel de campagne, puis enregistrez-la sur votre appareil.
         </p>
       </div>
-    </header>
 
-    <section class="card" id="sourceSection" aria-labelledby="sourceTitle">
-      <div class="section-heading">
-        <span class="step">1</span>
-        <div>
-          <h2 id="sourceTitle">Choisissez votre photo</h2>
-          <p>Importez votre photo Facebook ou choisissez une image sur votre appareil.</p>
+      <div class="candidate-visual" aria-hidden="true">
+        <div class="candidate-halo"></div>
+        <img src="./assets/antoine-cutout.png" alt="">
+      </div>
+
+      <section class="source-card" id="sourceSection" aria-labelledby="sourceTitle">
+        <div class="section-heading">
+          <span class="step">1</span>
+          <div>
+            <h2 id="sourceTitle">Choisissez votre photo</h2>
+            <p>Importez votre photo Facebook ou choisissez une image sur votre appareil.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="action-stack">
-        <button class="button button-facebook" id="facebookButton" type="button">
-          Importer ma photo Facebook
-        </button>
+        <div class="action-stack">
+          <button class="button button-facebook" id="facebookButton" type="button">
+            <span class="button-icon facebook-icon" aria-hidden="true">f</span>
+            <span class="button-label">Importer ma photo Facebook</span>
+            <span class="button-arrow" aria-hidden="true">›</span>
+          </button>
 
-        <p class="separator"><span>ou</span></p>
+          <p class="separator"><span>ou</span></p>
 
-        <label class="button button-secondary" for="fileInput">
-          Choisir une photo sur mon appareil
-        </label>
+          <label class="button button-secondary" for="fileInput">
+            <span class="button-icon image-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3.5" y="4.5" width="17" height="15" rx="2"></rect>
+                <circle cx="9" cy="9.5" r="1.6"></circle>
+                <path d="M5.5 17l4.5-4.2 3.2 2.7 2.6-2.4 4.2 3.9"></path>
+              </svg>
+            </span>
+            <span class="button-label">Choisir une photo sur mon appareil</span>
+            <span class="button-arrow" aria-hidden="true">›</span>
+          </label>
 
-        <input
-          class="visually-hidden"
-          id="fileInput"
-          type="file"
-          accept="image/jpeg,image/png,image/webp,image/*"
-        >
-      </div>
+          <input
+            class="visually-hidden"
+            id="fileInput"
+            type="file"
+            accept="image/jpeg,image/png,image/webp,image/*"
+          >
+        </div>
 
-      <div class="notice" id="facebookNotice" hidden></div>
+        <div class="notice" id="facebookNotice" hidden></div>
 
-      <p class="privacy-note">
-        Votre photo est traitée sur votre appareil. Rien n’est publié automatiquement.
-      </p>
+        <div class="privacy-note">
+          <span class="lock-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <rect x="5" y="10" width="14" height="10" rx="2"></rect>
+              <path d="M8 10V7.8A4 4 0 0 1 12 4a4 4 0 0 1 4 3.8V10"></path>
+            </svg>
+          </span>
+          <p>Votre photo est traitée sur votre appareil. Rien n’est publié automatiquement.</p>
+        </div>
+      </section>
     </section>
 
-    <section class="card" id="editorSection" aria-labelledby="editorTitle" hidden>
-      <div class="section-heading">
-        <span class="step">2</span>
-        <div>
-          <h2 id="editorTitle">Ajustez votre photo</h2>
-          <p>Déplacez votre image et utilisez le zoom pour choisir le cadrage qui vous convient.</p>
+    <section class="workflow">
+      <section class="stage-section" id="editorSection" aria-labelledby="editorTitle" hidden>
+        <div class="section-heading section-heading-light">
+          <span class="step step-light">2</span>
+          <div>
+            <h2 id="editorTitle">Ajustez votre photo</h2>
+            <p>Déplacez votre image et utilisez le zoom pour obtenir le cadrage souhaité.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="canvas-wrap">
-        <canvas id="editorCanvas" width="1080" height="1080" aria-label="Éditeur de photo"></canvas>
-      </div>
-
-      <div class="controls">
-        <label for="zoomRange">Zoom</label>
-        <input id="zoomRange" type="range" min="1" max="3" value="1" step="0.01">
-      </div>
-
-      <div class="button-row">
-        <button class="button button-secondary" id="resetButton" type="button">Recentrer</button>
-        <button class="button button-primary" id="generateButton" type="button">Créer mon visuel</button>
-      </div>
-    </section>
-
-    <section class="card" id="resultSection" aria-labelledby="resultTitle" hidden>
-      <div class="section-heading">
-        <span class="step">3</span>
-        <div>
-          <h2 id="resultTitle">Votre visuel est prêt</h2>
-          <p>Enregistrez-le ou partagez-le depuis votre téléphone.</p>
+        <div class="canvas-wrap">
+          <canvas id="editorCanvas" width="1080" height="1080" aria-label="Éditeur de photo"></canvas>
         </div>
-      </div>
 
-      <img id="resultImage" class="result-image" alt="Visuel de photo de profil généré">
+        <div class="controls controls-light">
+          <label for="zoomRange">Zoom</label>
+          <input id="zoomRange" type="range" min="1" max="3" value="1" step="0.01">
+        </div>
 
-      <div class="action-stack">
-        <button class="button button-primary" id="shareButton" type="button" hidden>
-          Partager mon visuel
-        </button>
+        <div class="button-row">
+          <button class="button button-soft" id="resetButton" type="button">Recentrer</button>
+          <button class="button button-white" id="generateButton" type="button">
+            <span class="button-label">Créer mon visuel</span>
+          </button>
+        </div>
+      </section>
 
-        <a class="button button-secondary" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">
-          Enregistrer ma photo
-        </a>
+      <section class="stage-section" id="resultSection" aria-labelledby="resultTitle" hidden>
+        <div class="section-heading section-heading-light">
+          <span class="step step-light">3</span>
+          <div>
+            <h2 id="resultTitle">Votre visuel est prêt</h2>
+            <p>Enregistrez-le ou utilisez le partage de votre téléphone.</p>
+          </div>
+        </div>
 
-        <a class="button button-ghost" id="facebookOpenButton"
-           href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
-          Ouvrir Facebook pour changer ma photo
-        </a>
-      </div>
+        <img id="resultImage" class="result-image" alt="Visuel généré">
 
-      <div class="instructions">
-        <strong>Pour l’utiliser comme photo de profil Facebook :</strong>
-        <ol>
-          <li>Enregistrez le visuel.</li>
-          <li>Ouvrez votre profil Facebook.</li>
-          <li>Choisissez « Modifier la photo de profil ».</li>
-          <li>Sélectionnez l’image générée puis validez.</li>
-        </ol>
-      </div>
+        <div class="action-stack">
+          <button class="button button-white" id="shareButton" type="button" hidden>
+            Partager mon visuel
+          </button>
+
+          <a class="button button-soft" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">
+            Enregistrer ma photo
+          </a>
+
+          <a class="button button-soft" id="facebookOpenButton"
+             href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+            Ouvrir Facebook
+          </a>
+        </div>
+
+        <div class="instructions">
+          <strong>Pour l’utiliser comme photo de profil Facebook :</strong>
+          <ol>
+            <li>Enregistrez l’image.</li>
+            <li>Ouvrez votre profil Facebook.</li>
+            <li>Choisissez « Modifier la photo de profil ».</li>
+            <li>Sélectionnez le visuel généré puis validez.</li>
+          </ol>
+        </div>
+      </section>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <p class="footer-kicker">SUIVRE ANTOINE</p>
+      <div class="footer-social">
+        <p class="footer-kicker">Réseaux sociaux</p>
 
-      <div class="social-links" aria-label="Réseaux sociaux d’Antoine Le Vilain">
-        <a class="social-button"
-           href="https://www.facebook.com/antoinelevilain18"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Facebook d’Antoine Le Vilain">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M13.6 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.6z"/>
-          </svg>
-        </a>
+        <div class="social-links" aria-label="Réseaux sociaux">
+          <a class="social-button"
+             href="https://www.facebook.com/antoinelevilain18"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.6 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.4 1.6-4.4 4.5V10H7v3h3v8h3.6z"/>
+            </svg>
+          </a>
 
-        <a class="social-button"
-           href="https://www.instagram.com/antoine_le_vilain/"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Instagram d’Antoine Le Vilain">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.4" cy="6.8" r="1"/>
-          </svg>
-        </a>
+          <a class="social-button"
+             href="https://www.instagram.com/antoine_le_vilain/"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.3" cy="6.8" r="1"/>
+            </svg>
+          </a>
 
-        <a class="social-button"
-           href="https://www.tiktok.com/@antoinelevilain"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="TikTok d’Antoine Le Vilain">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M14.2 3v10.3a4.1 4.1 0 1 1-3.5-4.1v3a1.3 1.3 0 1 0 .5 1V3h3z"/>
-            <path d="M14.2 3c.5 2.5 2 4 4.8 4.5v3c-2-.2-3.5-.8-4.8-1.9V3z"/>
-          </svg>
-        </a>
+          <a class="social-button"
+             href="https://www.tiktok.com/@antoinelevilain"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M14.2 3v10.3a4.1 4.1 0 1 1-3.5-4.1v3a1.3 1.3 0 1 0 .5 1V3h3z"/>
+              <path d="M14.2 3c.5 2.5 2 4 4.8 4.5v3c-2-.2-3.5-.8-4.8-1.9V3z"/>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-rule"></div>
@@ -168,10 +197,10 @@
     </div>
   </footer>
 
-  <script src="./js/config.js?v=8"></script>
-  <script src="./js/editor.js?v=8"></script>
-  <script src="./js/facebook.js?v=8"></script>
-  <script src="./js/share.js?v=8"></script>
-  <script src="./js/app.js?v=8"></script>
+  <script src="./js/config.js?v=9"></script>
+  <script src="./js/editor.js?v=9"></script>
+  <script src="./js/facebook.js?v=9"></script>
+  <script src="./js/share.js?v=9"></script>
+  <script src="./js/app.js?v=9"></script>
 </body>
 </html>
