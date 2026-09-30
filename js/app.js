@@ -9,6 +9,10 @@
   const resultImage = document.getElementById("resultImage");
   const shareButton = document.getElementById("shareButton");
   const downloadButton = document.getElementById("downloadButton");
+  const friendShareSection = document.querySelector(".friend-share-section");
+  const shareSiteButton = document.getElementById("shareSiteButton");
+  const shareSiteFeedback = document.getElementById("shareSiteFeedback");
+  const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/";
   const facebookButtonLabel = facebookButton.querySelector(".button-label");
   const generateButtonLabel = generateButton.querySelector(".button-label");
 
@@ -30,6 +34,7 @@
   function showEditor() {
     editorSection.hidden = false;
     resultSection.hidden = true;
+    if (friendShareSection) friendShareSection.hidden = true;
 
     editorSection.scrollIntoView({
       behavior: "smooth",
@@ -181,6 +186,7 @@
       );
 
       resultSection.hidden = false;
+      if (friendShareSection) friendShareSection.hidden = false;
 
       resultSection.scrollIntoView({
         behavior: "smooth",
@@ -214,6 +220,67 @@
       }
     }
   });
+
+  function showShareSiteFeedback(message) {
+    if (!shareSiteFeedback) return;
+
+    shareSiteFeedback.textContent = message;
+    shareSiteFeedback.hidden = false;
+
+    window.clearTimeout(shareSiteFeedback._timeout);
+    shareSiteFeedback._timeout = window.setTimeout(() => {
+      shareSiteFeedback.hidden = true;
+    }, 3500);
+  }
+
+  async function copySiteLink() {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(SITE_SHARE_URL);
+      return;
+    }
+
+    const input = document.createElement("textarea");
+    input.value = SITE_SHARE_URL;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.opacity = "0";
+    document.body.appendChild(input);
+    input.select();
+    const copied = document.execCommand("copy");
+    input.remove();
+
+    if (!copied) throw new Error("Copie impossible");
+  }
+
+  async function shareSite() {
+    const shareData = {
+      title: document.title,
+      url: SITE_SHARE_URL
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+        return;
+      }
+
+      await copySiteLink();
+      showShareSiteFeedback("Lien copié dans le presse-papiers.");
+    } catch (error) {
+      if (error?.name === "AbortError") return;
+
+      try {
+        await copySiteLink();
+        showShareSiteFeedback("Lien copié dans le presse-papiers.");
+      } catch {
+        showShareSiteFeedback("Impossible d’ouvrir le partage sur cet appareil.");
+      }
+    }
+  }
+
+  if (shareSiteButton) {
+    shareSiteButton.addEventListener("click", shareSite);
+  }
 
   async function bootstrapFacebook() {
     if (!window.FacebookImport.configured()) {

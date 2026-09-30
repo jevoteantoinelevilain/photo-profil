@@ -1081,3 +1081,113 @@ h1 > span { display: block; white-space: nowrap; }
     padding-top: 18px;
   }
 }
+
+/* V22 — ciblage résultat + partage du lien */
+.result-primary-action {
+  background: #fff;
+  color: #b92a72;
+  border-color: rgba(255,255,255,.92);
+  box-shadow: 0 12px 28px rgba(70,20,65,.14);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .result-primary-action:hover,
+  .friend-share-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(70,20,65,.18);
+  }
+}
+
+.result-primary-action:active,
+.friend-share-button:active {
+  transform: translateY(1px);
+}
+
+.friend-share-section {
+  position: relative;
+  z-index: 8;
+  width: min(calc(100% - 64px), 850px);
+  margin: 28px auto 42px;
+}
+
+.friend-share-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "icon copy button"
+    ". feedback feedback";
+  align-items: center;
+  gap: 14px 20px;
+  padding: 22px 24px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 24px;
+  background: rgba(255,255,255,.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(65,20,70,.12);
+}
+
+.friend-share-icon {
+  grid-area: icon;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(255,255,255,.14);
+}
+
+.friend-share-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.friend-share-copy {
+  grid-area: copy;
+  min-width: 0;
+}
+
+.friend-share-copy h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.2rem, 1.55vw, 1.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.friend-share-copy p {
+  margin: 6px 0 0;
+  color: rgba(255,255,255,.80);
+  font-size: .92rem;
+  line-height: 1.4;
+}
+
+.friend-share-button {
+  grid-area: button;
+  width: auto;
+  min-width: 168px;
+  min-height: 52px;
+  justify-content: center;
+  padding-inline: 22px;
+  color: #b92a72;
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(70,20,65,.12);
+}
+
+.friend-share-feedback {
+  grid-area: feedback;
+  margin: 0;
+  color: rgba(255,255,255,.88);
+  font-size: .82rem;
+  line-height: 1.35;
+}
