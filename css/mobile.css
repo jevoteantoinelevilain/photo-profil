@@ -797,3 +797,80 @@
     width: calc(100% - 34px) !important;
   }
 }
+
+/* V22 — résultat + partage du lien, mobile uniquement */
+@media (max-width: 700px) {
+  #facebookOpenButton.result-primary-action {
+    width: 100% !important;
+    min-height: 60px !important;
+    justify-content: center !important;
+    color: #b92a72 !important;
+    background: #fff !important;
+    border-color: rgba(255,255,255,.92) !important;
+    box-shadow: 0 12px 28px rgba(70,20,65,.14) !important;
+  }
+
+  .friend-share-section {
+    position: relative !important;
+    z-index: 8 !important;
+    width: calc(100% - 28px) !important;
+    max-width: 430px !important;
+    margin: 24px auto 36px !important;
+  }
+
+  .friend-share-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    padding: 22px !important;
+    border: 1px solid rgba(255,255,255,.22) !important;
+    border-radius: 26px !important;
+    background: rgba(255,255,255,.10) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    box-shadow: 0 20px 46px rgba(65,20,70,.12) !important;
+    overflow: visible !important;
+  }
+
+  .friend-share-icon {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px !important;
+  }
+
+  .friend-share-copy h2 {
+    margin: 0 !important;
+    color: #fff !important;
+    font-size: clamp(1.15rem, 5vw, 1.3rem) !important;
+    font-weight: 800 !important;
+    line-height: 1.15 !important;
+  }
+
+  .friend-share-copy p {
+    margin: 5px 0 0 !important;
+    color: rgba(255,255,255,.82) !important;
+    font-size: clamp(.84rem, 3.5vw, .94rem) !important;
+    line-height: 1.4 !important;
+  }
+
+  .friend-share-button {
+    width: 100% !important;
+    min-height: 58px !important;
+    justify-content: center !important;
+    color: #b92a72 !important;
+    background: #fff !important;
+    border: 0 !important;
+    border-radius: 17px !important;
+    box-shadow: 0 10px 24px rgba(70,20,65,.12) !important;
+  }
+
+  .friend-share-feedback {
+    width: 100% !important;
+    margin: -2px 0 0 !important;
+    color: rgba(255,255,255,.90) !important;
+    font-size: .82rem !important;
+    line-height: 1.35 !important;
+  }
+}

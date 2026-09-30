@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#c9409d">
   <meta name="description" content="Créez votre photo de soutien personnalisée.">
   <title>Créez votre photo de soutien</title>
-  <link rel="stylesheet" href="./css/style.css?v=18">
-  <link rel="stylesheet" href="./css/mobile.css?v=21" media="(max-width: 700px)">
+  <link rel="stylesheet" href="./css/style.css?v=22">
+  <link rel="stylesheet" href="./css/mobile.css?v=22" media="(max-width: 700px)">
 </head>
 <body class="landing-page">
   <div id="fb-root"></div>
@@ -126,10 +126,10 @@
 
         <img id="resultImage" class="result-image" alt="Visuel généré">
 
-        <div class="action-stack">
-          <button class="button button-white" id="shareButton" type="button" hidden>Partager ma photo</button>
+        <div class="action-stack result-actions">
+          <a class="button button-white result-primary-action" id="facebookOpenButton" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Ouvrir Facebook</a>
+          <button class="button button-soft" id="shareButton" type="button" hidden>Partager ma photo</button>
           <a class="button button-soft" id="downloadButton" download="photo-profil-antoine-le-vilain.jpg">Enregistrer ma photo</a>
-          <a class="button button-soft" id="facebookOpenButton" href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Ouvrir Facebook</a>
         </div>
 
         <div class="instructions">
@@ -144,6 +144,28 @@
       </section>
     </section>
   </main>
+
+  <section class="friend-share-section" aria-labelledby="friendShareTitle" hidden>
+    <div class="friend-share-inner">
+      <div class="friend-share-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" role="presentation">
+          <circle cx="18" cy="5" r="2.5"></circle>
+          <circle cx="6" cy="12" r="2.5"></circle>
+          <circle cx="18" cy="19" r="2.5"></circle>
+          <path d="M8.2 10.8l7.6-4.5M8.2 13.2l7.6 4.5"></path>
+        </svg>
+      </div>
+
+      <div class="friend-share-copy">
+        <h2 id="friendShareTitle">Permettre à un ami de créer sa photo de soutien</h2>
+        <p>Partagez le lien de cette page.</p>
+      </div>
+
+      <button type="button" class="button friend-share-button" id="shareSiteButton">Partager le lien</button>
+
+      <p class="friend-share-feedback" id="shareSiteFeedback" role="status" aria-live="polite" hidden></p>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -179,6 +201,6 @@
   <script src="./js/editor.js?v=18"></script>
   <script src="./js/facebook.js?v=18"></script>
   <script src="./js/share.js?v=18"></script>
-  <script src="./js/app.js?v=18"></script>
+  <script src="./js/app.js?v=22"></script>
 </body>
 </html>
