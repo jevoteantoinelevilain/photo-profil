@@ -172,6 +172,9 @@
     line-height: 1.46 !important;
     letter-spacing: -.008em !important;
     text-wrap: pretty !important;
+    text-shadow:
+      0 1px 2px rgba(35, 10, 45, .22),
+      0 3px 10px rgba(35, 10, 45, .16) !important;
   }
 
   .lead strong {
