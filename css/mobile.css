@@ -138,7 +138,7 @@
     font-size: clamp(3.25rem, 13.7vw, 3.75rem) !important;
     font-weight: 900 !important;
     line-height: .90 !important;
-    letter-spacing: -.067em !important;
+    letter-spacing: -.045em !important;
     text-wrap: initial !important;
   }
 
