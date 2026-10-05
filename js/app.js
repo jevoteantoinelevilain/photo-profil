@@ -9,13 +9,12 @@
   const resultImage = document.getElementById("resultImage");
   const shareButton = document.getElementById("shareButton");
   const downloadButton = document.getElementById("downloadButton");
-  const facebookOpenButton = document.getElementById("facebookOpenButton");
   const friendShareSection = document.querySelector(".friend-share-section");
   const shareSiteButton = document.getElementById("shareSiteButton");
   const shareSiteFeedback = document.getElementById("shareSiteFeedback");
   const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/";
   const SITE_SHARE_TITLE = "Créez votre photo de soutien pour Antoine Le Vilain";
-  const SITE_SHARE_TEXT = "Soutenez Antoine Le Vilain à Saint-Amand-Montrond : créez votre photo de profil, personnalisez votre visuel en quelques secondes et partagez fièrement votre engagement.";
+  const SITE_SHARE_TEXT = "Ajoutez votre photo de profil pour créer un visuel personnalisé et partagez un soutien fort à Antoine Le Vilain pour les élections municipales à Saint-Amand-Montrond.";
   const facebookButtonLabel = facebookButton.querySelector(".button-label");
   const generateButtonLabel = generateButton.querySelector(".button-label");
 
@@ -223,43 +222,6 @@
       }
     }
   });
-
-
-  async function openFacebookWithGeneratedPhoto() {
-    if (!resultBlob) {
-      window.open(
-        "https://www.facebook.com/",
-        "_blank",
-        "noopener,noreferrer"
-      );
-      return;
-    }
-
-    try {
-      const canShareGeneratedPhoto =
-        await window.ShareTools.canShareBlob(resultBlob);
-
-      if (canShareGeneratedPhoto) {
-        await window.ShareTools.shareBlob(resultBlob);
-        return;
-      }
-    } catch (error) {
-      if (error?.name === "AbortError") return;
-    }
-
-    window.open(
-      "https://www.facebook.com/",
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }
-
-  if (facebookOpenButton) {
-    facebookOpenButton.addEventListener(
-      "click",
-      openFacebookWithGeneratedPhoto
-    );
-  }
 
   function showShareSiteFeedback(message) {
     if (!shareSiteFeedback) return;
