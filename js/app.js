@@ -12,8 +12,8 @@
   const friendShareSection = document.querySelector(".friend-share-section");
   const shareSiteButton = document.getElementById("shareSiteButton");
   const shareSiteFeedback = document.getElementById("shareSiteFeedback");
-  const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/partage-v32.html";
-  const SITE_SHARE_TITLE = "Créez votre photo de soutien pour Antoine Le Vilain";
+  const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/partage-v34.html";
+  const SITE_SHARE_TITLE = "Antoine Le Vilain — Photo de soutien";
   const SITE_SHARE_TEXT = "Ajoutez votre photo de profil pour créer un visuel personnalisé et partagez un soutien fort à Antoine Le Vilain pour les élections municipales à Saint-Amand-Montrond.";
   const facebookButtonLabel = facebookButton.querySelector(".button-label");
   const generateButtonLabel = generateButton.querySelector(".button-label");
@@ -109,6 +109,15 @@
 
   facebookButton.addEventListener("click", () => {
     hideNotice();
+
+    if (window.APP_CONFIG?.FACEBOOK_IMPORT_MODE === "local-fallback") {
+      showNotice(
+        "L’import automatique Facebook est temporairement indisponible côté Meta. Sélectionnez votre photo de profil Facebook depuis votre photothèque pour continuer.",
+        false
+      );
+      fileInput.click();
+      return;
+    }
 
     if (window.FacebookImport.usesRedirectFlow()) {
       facebookButton.disabled = true;
