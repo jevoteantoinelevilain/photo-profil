@@ -121,7 +121,7 @@ h1 {
   font-size: clamp(4.2rem, 6.7vw, 6.65rem);
   font-weight: 900;
   line-height: .88;
-  letter-spacing: -.067em;
+  letter-spacing: -.048em;
   text-wrap: balance;
 }
 
@@ -737,7 +737,7 @@ h1 > span { display: block; white-space: nowrap; }
     max-width: 5.8ch;
     font-size: clamp(4.25rem, 16vw, 5.9rem);
     line-height: .90;
-    letter-spacing: -.065em;
+    letter-spacing: -.048em;
   }
 
   .lead {

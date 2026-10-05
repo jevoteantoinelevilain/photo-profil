@@ -13,6 +13,8 @@
   const shareSiteButton = document.getElementById("shareSiteButton");
   const shareSiteFeedback = document.getElementById("shareSiteFeedback");
   const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/";
+  const SITE_SHARE_TITLE = "Créez votre photo de soutien pour Antoine Le Vilain";
+  const SITE_SHARE_TEXT = "Soutenez Antoine Le Vilain à Saint-Amand-Montrond : créez votre photo de profil, personnalisez votre visuel en quelques secondes et partagez fièrement votre engagement.";
   const facebookButtonLabel = facebookButton.querySelector(".button-label");
   const generateButtonLabel = generateButton.querySelector(".button-label");
 
@@ -254,7 +256,8 @@
 
   async function shareSite() {
     const shareData = {
-      title: document.title,
+      title: SITE_SHARE_TITLE,
+      text: SITE_SHARE_TEXT,
       url: SITE_SHARE_URL
     };
 
