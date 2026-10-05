@@ -24,3 +24,9 @@ Les fichiers `reference/desktop-reference.png` et `reference/mobile-reference.pn
 - génération JPEG
 - téléchargement / partage mobile
 - pages légales
+
+
+## V26
+- overlay de campagne remplacé par le nouvel overlay « Élections municipales / Je vote / Je soutiens Antoine Le Vilain » fourni par le client ;
+- remplacement complet de l’ancien overlay dans l’application ;
+- cache-busting mis à jour sur la source overlay.
