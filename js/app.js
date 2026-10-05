@@ -9,6 +9,7 @@
   const resultImage = document.getElementById("resultImage");
   const shareButton = document.getElementById("shareButton");
   const downloadButton = document.getElementById("downloadButton");
+  const facebookOpenButton = document.getElementById("facebookOpenButton");
   const friendShareSection = document.querySelector(".friend-share-section");
   const shareSiteButton = document.getElementById("shareSiteButton");
   const shareSiteFeedback = document.getElementById("shareSiteFeedback");
@@ -222,6 +223,43 @@
       }
     }
   });
+
+
+  async function openFacebookWithGeneratedPhoto() {
+    if (!resultBlob) {
+      window.open(
+        "https://www.facebook.com/",
+        "_blank",
+        "noopener,noreferrer"
+      );
+      return;
+    }
+
+    try {
+      const canShareGeneratedPhoto =
+        await window.ShareTools.canShareBlob(resultBlob);
+
+      if (canShareGeneratedPhoto) {
+        await window.ShareTools.shareBlob(resultBlob);
+        return;
+      }
+    } catch (error) {
+      if (error?.name === "AbortError") return;
+    }
+
+    window.open(
+      "https://www.facebook.com/",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+
+  if (facebookOpenButton) {
+    facebookOpenButton.addEventListener(
+      "click",
+      openFacebookWithGeneratedPhoto
+    );
+  }
 
   function showShareSiteFeedback(message) {
     if (!shareSiteFeedback) return;
