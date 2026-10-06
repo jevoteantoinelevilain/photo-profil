@@ -1,32 +1,22 @@
-# Photo profil — V15
+# Photo de profil — Antoine Le Vilain
 
-Refonte fidèle aux deux maquettes validées (desktop + mobile).
+Microsite statique hébergé sur GitHub Pages permettant de créer localement un visuel de photo de soutien.
 
-## Production
-`https://jevoteantoinelevilain.github.io/photo-profil/`
+## Fonctionnement
 
-## Meta / Facebook Login
-- App ID public : `1820368572475203`
-- Graph API : `v26.0`
-- Domaine : `jevoteantoinelevilain.github.io`
-- URL : `https://jevoteantoinelevilain.github.io/photo-profil/`
+- sélection d’une photo depuis l’appareil ;
+- recadrage, déplacement et zoom dans un canvas 1080 × 1080 ;
+- application de l’overlay de campagne ;
+- génération du visuel final ;
+- téléchargement et partage natif lorsque le navigateur le permet ;
+- aucun stockage de photo côté serveur.
 
-Ne jamais ajouter l’App Secret Meta dans ce dépôt.
+## Facebook
 
-## Références visuelles
-Les fichiers `reference/desktop-reference.png` et `reference/mobile-reference.png` sont inclus pour contrôle visuel, mais ne sont pas utilisés comme background de production.
+Le site ne dépend plus de Facebook Login, du SDK Facebook, de Graph API ni d’une application Meta pour importer la photo.
 
-## Fonctionnalités conservées
-- Facebook Login / import photo
-- sélection locale
-- éditeur canvas, zoom et déplacement
-- overlay 1080×1080
-- génération JPEG
-- téléchargement / partage mobile
-- pages légales
+Le bouton « Ouvrir Facebook » de l’étape finale est uniquement un lien externe vers `https://www.facebook.com/me` pour faciliter l’accès au profil de l’utilisateur connecté. Il n’effectue aucune authentification pour le site.
 
+## Déploiement
 
-## V26
-- overlay de campagne remplacé par le nouvel overlay « Élections municipales / Je vote / Je soutiens Antoine Le Vilain » fourni par le client ;
-- remplacement complet de l’ancien overlay dans l’application ;
-- cache-busting mis à jour sur la source overlay.
+Le projet est statique et peut être déployé directement sur GitHub Pages.
