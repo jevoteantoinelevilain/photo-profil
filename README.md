@@ -1,22 +1,40 @@
-# Photo de profil — Antoine Le Vilain
+# Photo profil — V15
 
-Microsite statique hébergé sur GitHub Pages permettant de créer localement un visuel de photo de soutien.
+Refonte fidèle aux deux maquettes validées (desktop + mobile).
 
-## Fonctionnement
+## Production
+`https://jevoteantoinelevilain.github.io/photo-profil/`
 
-- sélection d’une photo depuis l’appareil ;
-- recadrage, déplacement et zoom dans un canvas 1080 × 1080 ;
-- application de l’overlay de campagne ;
-- génération du visuel final ;
-- téléchargement et partage natif lorsque le navigateur le permet ;
-- aucun stockage de photo côté serveur.
+## Meta / Facebook Login
+- App ID public : `1820368572475203`
+- Graph API : `v26.0`
+- Domaine : `jevoteantoinelevilain.github.io`
+- URL : `https://jevoteantoinelevilain.github.io/photo-profil/`
 
-## Facebook
+Ne jamais ajouter l’App Secret Meta dans ce dépôt.
 
-Le site ne dépend plus de Facebook Login, du SDK Facebook, de Graph API ni d’une application Meta pour importer la photo.
+## Références visuelles
+Les fichiers `reference/desktop-reference.png` et `reference/mobile-reference.png` sont inclus pour contrôle visuel, mais ne sont pas utilisés comme background de production.
 
-Le bouton « Ouvrir Facebook » de l’étape finale est uniquement un lien externe vers `https://www.facebook.com/me` pour faciliter l’accès au profil de l’utilisateur connecté. Il n’effectue aucune authentification pour le site.
+## Fonctionnalités conservées
+- Facebook Login / import photo
+- sélection locale
+- éditeur canvas, zoom et déplacement
+- overlay 1080×1080
+- génération JPEG
+- téléchargement / partage mobile
+- pages légales
 
-## Déploiement
 
-Le projet est statique et peut être déployé directement sur GitHub Pages.
+## V26
+- overlay de campagne remplacé par le nouvel overlay « Élections municipales / Je vote / Je soutiens Antoine Le Vilain » fourni par le client ;
+- remplacement complet de l’ancien overlay dans l’application ;
+- cache-busting mis à jour sur la source overlay.
+
+
+## V36
+
+- favicon remplacée par la nouvelle icône fournie ;
+- visuel de partage remplacé par le nouveau bandeau fourni ;
+- nouvelle URL de partage `partage-v36.html` pour forcer le rafraîchissement des aperçus WhatsApp / Facebook ;
+- texte de partage confirmé : « Ajoutez votre photo de profil pour créer un visuel personnalisé et partagez un soutien fort à Antoine Le Vilain pour les élections municipales à Saint-Amand-Montrond. »
