@@ -1,6 +1,5 @@
 (() => {
-  const facebookButton = document.getElementById("facebookButton");
-  const facebookNotice = document.getElementById("facebookNotice");
+  const uploadNotice = document.getElementById("uploadNotice");
   const fileInput = document.getElementById("fileInput");
   const editorSection = document.getElementById("editorSection");
   const resultSection = document.getElementById("resultSection");
@@ -15,22 +14,21 @@
   const SITE_SHARE_URL = "https://jevoteantoinelevilain.github.io/photo-profil/partage-v34.html";
   const SITE_SHARE_TITLE = "Antoine Le Vilain — Photo de soutien";
   const SITE_SHARE_TEXT = "Ajoutez votre photo de profil pour créer un visuel personnalisé et partagez un soutien fort à Antoine Le Vilain pour les élections municipales à Saint-Amand-Montrond.";
-  const facebookButtonLabel = facebookButton.querySelector(".button-label");
   const generateButtonLabel = generateButton.querySelector(".button-label");
 
   let resultBlob = null;
   let resultUrl = null;
 
   function showNotice(message, isError = false) {
-    facebookNotice.hidden = false;
-    facebookNotice.textContent = message;
-    facebookNotice.classList.toggle("error", isError);
+    uploadNotice.hidden = false;
+    uploadNotice.textContent = message;
+    uploadNotice.classList.toggle("error", isError);
   }
 
   function hideNotice() {
-    facebookNotice.hidden = true;
-    facebookNotice.textContent = "";
-    facebookNotice.classList.remove("error");
+    uploadNotice.hidden = true;
+    uploadNotice.textContent = "";
+    uploadNotice.classList.remove("error");
   }
 
   function showEditor() {
@@ -42,33 +40,6 @@
       behavior: "smooth",
       block: "start"
     });
-  }
-
-  async function useFacebookPicture(profile) {
-    try {
-      await window.PhotoEditor.setSourceImage(
-        profile.pictureUrl,
-        profile.objectUrl
-          ? {}
-          : { crossOrigin: "anonymous" }
-      );
-
-      if (profile.objectUrl) {
-        URL.revokeObjectURL(profile.pictureUrl);
-      }
-
-      hideNotice();
-      showEditor();
-    } catch (error) {
-      if (profile.objectUrl) {
-        URL.revokeObjectURL(profile.pictureUrl);
-      }
-
-      showNotice(
-        "La connexion Facebook a réussi, mais votre navigateur empêche l’utilisation directe de cette photo. Choisissez la même photo depuis votre appareil pour continuer.",
-        true
-      );
-    }
   }
 
   async function loadLocalFile(file) {
@@ -105,67 +76,6 @@
 
   fileInput.addEventListener("change", () => {
     loadLocalFile(fileInput.files?.[0]);
-  });
-
-  facebookButton.addEventListener("click", () => {
-    hideNotice();
-
-    if (window.APP_CONFIG?.FACEBOOK_IMPORT_MODE === "local-fallback") {
-      showNotice(
-        "L’import automatique Facebook est temporairement indisponible côté Meta. Sélectionnez votre photo de profil Facebook depuis votre photothèque pour continuer.",
-        false
-      );
-      fileInput.click();
-      return;
-    }
-
-    if (window.FacebookImport.usesRedirectFlow()) {
-      facebookButton.disabled = true;
-      facebookButtonLabel.textContent = "Ouverture de Facebook…";
-
-      try {
-        window.FacebookImport.startRedirectLogin();
-      } catch (error) {
-        facebookButton.disabled = false;
-        facebookButtonLabel.textContent =
-          "Utiliser ma photo Facebook";
-
-        showNotice(
-          error.message ||
-            "Impossible d’ouvrir Facebook.",
-          true
-        );
-      }
-
-      return;
-    }
-
-    if (!window.FacebookImport.isReady()) {
-      showNotice(
-        "Facebook est encore en cours de préparation. Réessayez dans un instant.",
-        true
-      );
-      return;
-    }
-
-    facebookButton.disabled = true;
-    facebookButtonLabel.textContent =
-      "Connexion à Facebook…";
-
-    window.FacebookImport.popupLogin()
-      .then(useFacebookPicture)
-      .catch((error) => {
-        showNotice(
-          error.message ||
-            "La connexion Facebook n’a pas abouti.",
-          true
-        );
-      })
-      .finally(() => {
-        facebookButton.disabled = false;
-        facebookButtonLabel.textContent =
-          "Utiliser ma photo Facebook";
-      });
   });
 
   resetButton.addEventListener("click", () => {
@@ -294,67 +204,4 @@
     shareSiteButton.addEventListener("click", shareSite);
   }
 
-  async function bootstrapFacebook() {
-    if (!window.FacebookImport.configured()) {
-      facebookButton.disabled = true;
-
-      showNotice(
-        "L’import Facebook n’est pas disponible pour le moment. Vous pouvez choisir une photo sur votre appareil.",
-        true
-      );
-
-      return;
-    }
-
-    try {
-      const redirectProfile =
-        await window.FacebookImport.consumeRedirectLogin();
-
-      if (redirectProfile) {
-        facebookButton.disabled = true;
-        facebookButtonLabel.textContent =
-          "Récupération de votre photo…";
-
-        await useFacebookPicture(
-          redirectProfile
-        );
-      }
-    } catch (error) {
-      showNotice(
-        error.message ||
-          "La connexion Facebook n’a pas abouti.",
-        true
-      );
-    }
-
-    if (window.FacebookImport.usesRedirectFlow()) {
-      facebookButton.disabled = false;
-      facebookButtonLabel.textContent =
-        "Utiliser ma photo Facebook";
-      return;
-    }
-
-    facebookButton.disabled = true;
-    facebookButtonLabel.textContent =
-      "Préparation de Facebook…";
-
-    try {
-      await window.FacebookImport.loadSdk();
-
-      facebookButton.disabled = false;
-      facebookButtonLabel.textContent =
-        "Utiliser ma photo Facebook";
-    } catch (error) {
-      facebookButton.disabled = false;
-      facebookButtonLabel.textContent =
-        "Réessayer Facebook";
-
-      showNotice(
-        "Facebook n’a pas pu être préparé. Vous pouvez réessayer ou choisir une photo sur votre appareil.",
-        true
-      );
-    }
-  }
-
-  bootstrapFacebook();
 })();
